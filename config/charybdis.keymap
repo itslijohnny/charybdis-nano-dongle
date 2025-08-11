@@ -69,8 +69,8 @@ ZMK_HOLD_TAP(smart_num, bindings = <&mo>, <&num_dance>; flavor = "balanced"; tap
 ZMK_TAP_DANCE(num_dance, bindings = <&num_word NUM>, <&sl NUM>; tapping-term-ms = <200>;)
 
 // Swapper settings for all window contexts
-ZMK_BEHAVIOR(kt_on, key_toggle, toggle-mode = "on";)
-ZMK_BEHAVIOR(kt_off, key_toggle, toggle-mode = "off";)
+ZMK_BEHAVIOR(kt_on, key_toggle, #binding-cells = <1>; toggle-mode = "on";)
+ZMK_BEHAVIOR(kt_off, key_toggle, #binding-cells = <1>; toggle-mode = "off";)
 ZMK_TRI_STATE(appswap, bindings = <&kt_on LGUI>, <&kp TAB>, <&kt_off LGUI>;)
 ZMK_TRI_STATE(winswap, bindings = <&kt_on LGUI>, <&kp GRAVE>, <&kt_off LGUI>;)
 ZMK_TRI_STATE(tabswap, bindings = <&kt_on LCTRL>, <&kp TAB>, <&kt_off LCTRL>;)
