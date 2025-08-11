@@ -26,7 +26,7 @@
 
 &sk {
     quick-release;
-    release-after-ms = <1600>;
+    release-after-ms = <1400>;
 };
 
 &sl { // Allow sticky mods to chord across sticky layers.
@@ -69,9 +69,11 @@ ZMK_HOLD_TAP(smart_num, bindings = <&mo>, <&num_dance>; flavor = "balanced"; tap
 ZMK_TAP_DANCE(num_dance, bindings = <&num_word NUM>, <&sl NUM>; tapping-term-ms = <200>;)
 
 // Swapper settings for all window contexts
-ZMK_TRI_STATE(appswap, bindings = <&kt LGUI>, <&kp TAB>, <&kt LGUI>;)
-ZMK_TRI_STATE(winswap, bindings = <&kt LGUI>, <&kp GRAVE>, <&kt LGUI>;)
-ZMK_TRI_STATE(tabswap, bindings = <&kt LCTRL>, <&kp TAB>, <&kt LCTRL>;)
+ZMK_BEHAVIOR(kt_on, key_toggle, toggle-mode = "on";)
+ZMK_BEHAVIOR(kt_off, key_toggle, toggle-mode = "off";)
+ZMK_TRI_STATE(appswap, bindings = <&kt_on LGUI>, <&kp TAB>, <&kt_off LGUI>;)
+ZMK_TRI_STATE(winswap, bindings = <&kt_on LGUI>, <&kp GRAVE>, <&kt_off LGUI>;)
+ZMK_TRI_STATE(tabswap, bindings = <&kt_on LCTRL>, <&kp TAB>, <&kt_off LCTRL>;)
 
 // Enable FUN layer if NAV and     are active
 ZMK_CONDITIONAL_LAYER(fun_layer, NAV NUM, FUN)
