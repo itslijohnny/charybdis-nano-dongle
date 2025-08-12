@@ -23,10 +23,11 @@
 #define NAV  1
 #define NUM  2
 #define FUN  3
+#define MOU  4
 
 &sk {
     quick-release;
-    release-after-ms = <1400>;
+    release-after-ms = <1200>;
 };
 
 &sl { // Allow sticky mods to chord across sticky layers.
@@ -53,7 +54,7 @@
 
 // Tap: space | Hold: nav layer.
 #define SPC_NAV &lt_spc NAV SPACE
-ZMK_HOLD_TAP(lt_spc, bindings = <&mo>, <&kp>; flavor = "balanced"; tapping-term-ms = <180>; quick-tap-ms = <QUICK_TAP_MS>;)
+ZMK_HOLD_TAP(lt_spc, bindings = <&mo>, <&kp>; flavor = "balanced"; tapping-term-ms = <200>; quick-tap-ms = <QUICK_TAP_MS>;)
 
 // Shift + tap/ double-tap: caps-word | Hold: shift.
 #define MAGIC_SHIFT &magic_shift LSHFT 0
@@ -72,6 +73,11 @@ ZMK_TAP_DANCE(num_dance, bindings = <&num_word NUM>, <&sl NUM>; tapping-term-ms 
 ZMK_TRI_STATE(appswap, bindings = <&kt_on LGUI>, <&kp TAB>, <&kt_off LGUI>;)
 ZMK_TRI_STATE(winswap, bindings = <&kt_on LGUI>, <&kp GRAVE>, <&kt_off LGUI>;)
 ZMK_TRI_STATE(tabswap, bindings = <&kt_on LCTRL>, <&kp TAB>, <&kt_off LCTRL>;)
+
+// Magic-mouse
+ZMK_MACRO_ONE_PARAM(btap, bindings = <&to BASE>, <&macro_param_1to1>, <&kp MACRO_PLACEHOLDER>; wait-ms = <0>; tap-ms = <5>;)
+ZMK_COMBO(mou_mb3,    &mkp MB3,  MB1 MB2, BASE NAV)
+ZMK_COMBO(mou_scroll, &mo  NAV,  MB2 MB3, BASE NAV)
 
 // Enable FUN layer if NAV and NUM are active
 ZMK_CONDITIONAL_LAYER(fun_layer, NAV NUM, FUN)
@@ -101,6 +107,8 @@ SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
     trackball_listener {
         compatible = "zmk,input-listener";
         device = <&trackball_split>;
+
+        input-processors = <&zip_temp_layer MOU 5000>;
 
         scroll {
             layers = <NAV>;
@@ -156,7 +164,7 @@ SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
             NAV {
                 display-name = "NAV";
     // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-    // ┃          1 - Navigation               ┃
+    // ┃         1 - Navigation                ┃
     // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
     //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
     //             ┃    ESC    ┃    TAB    ┃  NXT_APP  ┃  NXT_WIN  ┃  NXT_TAB  ┃   ┃   PG_UP   ┃           ┃    UP     ┃           ┃           ┃
@@ -181,7 +189,7 @@ SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
             NUM {
                 display-name = "NUM";
     // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-    // ┃           2 - Numbers                  ┃
+    // ┃           2 - Numbers                 ┃
     // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
     //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
     //             ┃    ESC    ┃           ┃           ┃           ┃           ┃   ┃     -     ┃     7     ┃     8     ┃     9     ┃     =     ┃
@@ -226,5 +234,32 @@ SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
                             >;
             };
     };
+
     // ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+
+            MOU {
+                    display-name = "MOU";
+        // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+        // ┃       4 - Mouse                       ┃
+        // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+        //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
+        //             ┃           ┃           ┃           ┃           ┃           ┃   ┃           ┃           ┃           ┃           ┃           ┃
+        //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
+        //             ┃   SHIFT   ┃   CTRL    ┃    ALT    ┃    GUI    ┃           ┃   ┃           ┃           ┃           ┃           ┃           ┃
+        //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
+        //             ┃           ┃           ┃           ┃           ┃           ┃   ┃           ┃    MB1    ┃    MB2    ┃           ┃           ┃
+        //             ┗━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━SCROLL━━━━━━━━┻━━━━━━━━━━━┛
+        //                                     ┃ SPACE/NAV ┃ SMART NUM ┃           ┃   ┃           ┃           ┃
+        //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┛
+         bindings = <
+        // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
+                        &btap Q     &btap W     &btap F     &btap P     &btap B         &btap J     &btap L     &btap U     &btap Y     &btap SQT
+                        &kp LSHFT   &kp LCTRL   &kp LALT    &kp LGUI    &btap G         &btap M     &btap N     &btap E     &btap I     &btap O
+                        &btap Z     &btap X     &btap C     &btap D     &btap V         &btap K     &mkp MB1    &mkp MB2    &btap DOT   &btap FSLH
+                                                SPC_NAV     SMART_NUM   &to BASE        &to BASE    MAGIC_SHIFT
+                                >;
+                };
+
+        // ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+
 };
