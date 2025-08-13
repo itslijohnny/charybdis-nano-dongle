@@ -20,10 +20,10 @@
 #define paste &kp LG(V)
 
 #define BASE 0
-#define NAV  1
-#define NUM  2
-#define FUN  3
-#define MOU  4
+#define MOU  1
+#define NAV  2
+#define NUM  3
+#define FUN  4
 
 &sk {
     quick-release;
@@ -179,7 +179,7 @@ SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
                         &btap Q     &btap W     &btap F     &btap P     &btap B         &btap J     &btap L     &btap U     &btap Y     &btap SQT
                         &sk LSHFT   &sk LCTRL   &sk LALT    &sk LGUI    &btap G         &btap M     &btap N     &btap E     &btap I     &btap O
                         &btap Z     &btap X     &btap C     &btap D     &btap V         &btap K     &mkp MB1    &mkp MB2    &mo NAV     &btap FSLH
-                                                SPC_NAV     SMART_NUM   &to BASE        &to BASE    MAGIC_SHIFT
+                                                &mo NAV     &mo NUM     &to BASE        &to BASE    MAGIC_SHIFT
                                 >;
                 };
 
