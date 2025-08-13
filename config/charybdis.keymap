@@ -161,7 +161,7 @@ SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
     // ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
             MOU {
-                    display-name = "MOU";
+                    display-name = "MOUSE";
         // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
         // ┃       1 - Mouse                       ┃
         // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
@@ -177,7 +177,7 @@ SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
          bindings = <
         // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
                         &btap Q     &btap W     &btap F     &btap P     &btap B         &btap J     &btap L     &btap U     &btap Y     &btap SQT
-                        &sk LSHFT   &sk LCTRL   &sk LALT    &sk LGUI    &btap G         &btap M     &btap N     &btap E     &btap I     &btap O
+                        &btap A     &btap R     &btap S     &btap T     &btap G         &btap M     &btap N     &btap E     &btap I     &btap O
                         &btap Z     &btap X     &btap C     &btap D     &btap V         &btap K     &mkp MB1    &mkp MB2    &mo NAV     &btap FSLH
                                                 &mo NAV     &mo NUM     &to BASE        &to BASE    MAGIC_SHIFT
                                 >;
