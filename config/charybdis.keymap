@@ -76,7 +76,8 @@ ZMK_TRI_STATE(tabswap, bindings = <&kt_on LCTRL>, <&kp TAB>, <&kt_off LCTRL>;)
 
 // Magic-mouse
 ZMK_MACRO_ONE_PARAM(btap, bindings = <&to BASE>, <&macro_param_1to1>, <&kp MACRO_PLACEHOLDER>; wait-ms = <0>; tap-ms = <5>;)
-ZMK_COMBO(mou_mb3,    &mkp MB3,  MB1 MB2, MOU)
+ZMK_COMBO(mou_mb3,    &mkp MB3,  RB1 RB2, MOU)
+ZMK_COMBO(mou_scroll, &mkp MB3,  RB1 RB3, MOU)
 
 // Enable FUN layer if NAV and NUM are active
 ZMK_CONDITIONAL_LAYER(fun_layer, NAV NUM, FUN)
