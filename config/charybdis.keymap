@@ -76,6 +76,8 @@ ZMK_TRI_STATE(tabswap, bindings = <&kt_on LCTRL>, <&kp TAB>, <&kt_off LCTRL>;)
 
 // Magic-mouse
 ZMK_MACRO_ONE_PARAM(btap, bindings = <&to BASE>, <&macro_param_1to1>, <&kp MACRO_PLACEHOLDER>; wait-ms = <0>; tap-ms = <5>;)
+ZMK_MACRO(bdot_morph, bindings = <&to BASE>, <&dot_morph>; wait-ms = <0>; tap-ms = <5>;)
+ZMK_MACRO(bcomma_morph, bindings = <&to BASE>, <&comma_morph>; wait-ms = <0>; tap-ms = <5>;)
 ZMK_MACRO_ONE_PARAM(motap,
     bindings = <&macro_param_1to1>,
                <&macro_press &mo MACRO_PLACEHOLDER>,
@@ -87,7 +89,6 @@ ZMK_MACRO_ONE_PARAM(motap,
    tap-ms = <5>;
    )
 ZMK_COMBO(mou_mb3,    &mkp MB3,  RB1 RB2, MOU)
-ZMK_COMBO(mou_scroll, &mo NAV,  RB1 RB3, MOU)
 
 // Enable FUN layer if NAV and NUM are active
 ZMK_CONDITIONAL_LAYER(fun_layer, NAV NUM, FUN)
@@ -181,7 +182,7 @@ SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
         //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
         //             ┃   SHIFT   ┃   CTRL    ┃    ALT    ┃    GUI    ┃           ┃   ┃           ┃           ┃           ┃           ┃           ┃
         //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-        //             ┃           ┃           ┃           ┃           ┃           ┃   ┃           ┃    MB1    ┃    MB2    ┃    NAV    ┃           ┃
+        //             ┃           ┃           ┃           ┃           ┃           ┃   ┃           ┃    MB1    ┃    MB2    ┃           ┃    NAV    ┃
         //             ┗━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
         //                                     ┃ SPACE/NAV ┃ SMART NUM ┃           ┃   ┃           ┃           ┃
         //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┛
@@ -189,7 +190,7 @@ SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
         // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
                         &btap Q     &btap W     &btap F     &btap P     &btap B         &btap J     &btap L     &btap U     &btap Y     &btap SQT
                         &btap A     &btap R     &btap S     &btap T     &btap G         &btap M     &btap N     &btap E     &btap I     &btap O
-                        &btap Z     &btap X     &btap C     &btap D     &btap V         &btap K     &mkp MB1    &mkp MB2    &btap DOT   &btap FSLH
+                        &btap Z     &btap X     &btap C     &btap D     &btap V         &mkp MB1    &mkp MB2    &bcomma_morph &bdot_morph &mo NAV
                                                 &motap NAV  &motap NUM  &to BASE        &to BASE    MAGIC_SHIFT
                                 >;
                 };
