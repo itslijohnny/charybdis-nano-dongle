@@ -49,18 +49,24 @@
 
 #include "combos.dtsi"
 
+#define NAV_BSPC  &mt LA(BSPC) BSPC  // Tap: bspc  | Long-tap: delete word bwd.
+#define NAV_DEL   &mt LA(DEL)  DEL   // Tap: del   | Long-tap: delete word fwd.
+
 // Define mod-morph with a *single* mod trigger for less repetition.
 #define SIMPLE_MORPH(NAME, MOD, BINDING1, BINDING2) ZMK_MOD_MORPH(NAME, mods = <(MOD_L##MOD | MOD_R##MOD)>; bindings = <BINDING1>, <BINDING2>;)
 
-// Tap: space | Hold: nav layer.
-#define SPC_NAV &lt_spc NAV SPACE
-ZMK_HOLD_TAP(lt_spc, bindings = <&mo>, <&kp>; flavor = "balanced"; tapping-term-ms = <200>; quick-tap-ms = <QUICK_TAP_MS>;)
+// Tap: space | Shift + tap: dot -> space -> sticky shift | Hold: nav layer.
+#define SPC_NAV &lt_spc NAV 0
+ZMK_HOLD_TAP(lt_spc, bindings = <&mo>, <&spc_morph>; flavor = "balanced"; tapping-term-ms = <200>; quick-tap-ms = <QUICK_TAP_MS>;)
+SIMPLE_MORPH(spc_morph, SFT, &kp SPACE, &dot_spc)
+ZMK_MACRO(dot_spc, bindings = <&kp DOT &kp SPACE &sk LSHFT>; wait-ms = <0>; tap-ms = <5>;)
+
 
 // Shift + tap/ double-tap: caps-word | Hold: shift.
 #define MAGIC_SHIFT &magic_shift LSHFT 0
 ZMK_HOLD_TAP(magic_shift, bindings = <&kp>, <&magic_shift_tap>; flavor = "balanced"; tapping-term-ms = <200>; quick-tap-ms = <QUICK_TAP_MS>;)
 ZMK_MOD_MORPH(magic_shift_tap, bindings = <&sk LSHFT>, <&caps_word>; mods = <(MOD_LSFT)>;)
-&caps_word { // Mods deactivate caps-word, requires PR #1451. [TODO: rebase]
+&caps_word {
   /delete-property/ ignore-modifiers;
 };
 
@@ -70,9 +76,9 @@ ZMK_HOLD_TAP(smart_num, bindings = <&mo>, <&num_dance>; flavor = "balanced"; tap
 ZMK_TAP_DANCE(num_dance, bindings = <&num_word NUM>, <&sl NUM>; tapping-term-ms = <200>;)
 
 // Swapper settings for all window contexts
-ZMK_TRI_STATE(appswap, bindings = <&kt_on LGUI>, <&kp TAB>, <&kt_off LGUI>;)
-ZMK_TRI_STATE(winswap, bindings = <&kt_on LGUI>, <&kp GRAVE>, <&kt_off LGUI>;)
-ZMK_TRI_STATE(tabswap, bindings = <&kt_on LCTRL>, <&kp TAB>, <&kt_off LCTRL>;)
+ZMK_TRI_STATE(appswap, bindings = <&kt_on LGUI>, <&kp TAB>, <&kt_off LGUI>; ignored-key-positions = <LT2 RT2 RM1 RM2 RM3>;)
+ZMK_TRI_STATE(winswap, bindings = <&kt_on LGUI>, <&kp GRAVE>, <&kt_off LGUI>; ignored-key-positions = <LT1 RT2 RM1 RM2 RM3>;)
+ZMK_TRI_STATE(tabswap, bindings = <&kt_on LCTRL>, <&kp TAB>, <&kt_off LCTRL>; ignored-key-positions = <LT0 RT2 RM1 RM2 RM3>;)
 
 // Magic-mouse
 ZMK_MACRO_ONE_PARAM(btap, bindings = <&to BASE>, <&macro_param_1to1>, <&kp MACRO_PLACEHOLDER>; wait-ms = <0>; tap-ms = <5>;)
@@ -88,7 +94,7 @@ ZMK_MACRO_ONE_PARAM(motap,
    wait-ms = <0>;
    tap-ms = <5>;
    )
-ZMK_COMBO(mou_mb3,    &mkp MB3,  RB1 RB2, MOU)
+ZMK_COMBO(mou_mb3,    &mkp MB3,  RB0 RB1, MOU)
 
 // Enable FUN layer if NAV and NUM are active
 ZMK_CONDITIONAL_LAYER(fun_layer, NAV NUM, FUN)
@@ -159,14 +165,14 @@ SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
     //             ┃     Z     ┃     X     ┃     C     ┃     D     ┃     V     ┃   ┃     K     ┃     H     ┃     ,     ┃     .     ┃     /     ┃
     //             ┗━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-    //                                     ┃ SPACE/NAV ┃ SMART NUM ┃           ┃   ┃           ┃ MAG SHIFT ┃
+    //                                     ┃ SPACE/NAV ┃    NAV    ┃           ┃   ┃ SMART NUM ┃ MAG SHIFT ┃
     //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┛
      bindings = <
     // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
                     &kp Q       &kp W       &kp F       &kp P       &kp B           &kp J       &kp L       &kp U       &kp Y       &kp SQT
                     &kp A       &kp R       &kp S       &kp T       &kp G           &kp M       &kp N       &kp E       &kp I       &kp O
                     &kp Z       &kp X       &kp C       &kp D       &kp V           &kp K       &kp H       &comma_morph &dot_morph &kp FSLH
-                                            SPC_NAV     SMART_NUM   &none           &none       MAGIC_SHIFT
+                                            SPC_NAV     &mo NAV     &none           SMART_NUM   MAGIC_SHIFT
                             >;
             };
 
@@ -182,16 +188,16 @@ SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
         //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
         //             ┃   SHIFT   ┃   CTRL    ┃    ALT    ┃    GUI    ┃           ┃   ┃           ┃           ┃           ┃           ┃           ┃
         //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-        //             ┃           ┃           ┃           ┃           ┃           ┃   ┃           ┃    MB1    ┃    MB2    ┃           ┃    NAV    ┃
+        //             ┃           ┃           ┃           ┃           ┃           ┃   ┃    MB1    ┃    MB2    ┃           ┃           ┃           ┃
         //             ┗━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-        //                                     ┃ SPACE/NAV ┃ SMART NUM ┃           ┃   ┃           ┃           ┃
+        //                                     ┃ SPACE/NAV ┃    NAV    ┃           ┃   ┃ SMART NUM ┃  SCROLL   ┃
         //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┛
          bindings = <
         // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
                         &btap Q     &btap W     &btap F     &btap P     &btap B         &btap J     &btap L     &btap U     &btap Y     &btap SQT
-                        &btap A     &btap R     &btap S     &btap T     &btap G         &btap M     &btap N     &btap E     &btap I     &btap O
-                        &btap Z     &btap X     &btap C     &btap D     &btap V         &mkp MB1    &mkp MB2    &bcomma_morph &bdot_morph &mo NAV
-                                                &motap NAV  &motap NUM  &to BASE        &to BASE    MAGIC_SHIFT
+                        &kp LSHFT   &kp LCTRL   &kp LALT    &kp LGUI    &btap G         &btap M     &btap N     &btap E     &btap I     &btap O
+                        &btap Z     &btap X     &btap C     &btap D     &btap V         &mkp MB1    &mkp MB2    &bcomma_morph &bdot_morph &btap FSLH
+                                                &motap NAV  &motap NAV  &to BASE        &motap NUM  &mo NAV
                                 >;
                 };
 
@@ -203,17 +209,17 @@ SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
     // ┃         2 - Navigation                ┃
     // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
     //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
-    //             ┃    ESC    ┃    TAB    ┃  NXT_APP  ┃  NXT_WIN  ┃  NXT_TAB  ┃   ┃   PG_UP   ┃           ┃    UP     ┃           ┃           ┃
+    //             ┃    ESC    ┃           ┃  NXT_APP  ┃  NXT_WIN  ┃  NXT_TAB  ┃   ┃   PG_UP   ┃   BSPC    ┃    UP     ┃    DEL    ┃           ┃
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
     //             ┃   SHIFT   ┃   CTRL    ┃    ALT    ┃    GUI    ┃           ┃   ┃   PG_DN   ┃   LEFT    ┃   DOWN    ┃   RIGHT   ┃           ┃
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
     //             ┃           ┃           ┃           ┃           ┃           ┃   ┃           ┃           ┃           ┃           ┃   ENTER   ┃
     //             ┗━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-    //                                     ┃ █████████ ┃ SMART NUM ┃           ┃   ┃           ┃           ┃
+    //                                     ┃ █████████ ┃    NAV    ┃           ┃   ┃ SMART NUM ┃ MAG SHIFT ┃
     //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┛
      bindings = <
     // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
-                    &kp ESC     &kp TAB     &appswap    &winswap    &tabswap        &kp PG_UP   &trans      &kp UP      &trans      &trans
+                    &kp ESC     &kp TAB     &appswap    &winswap    &tabswap        &kp PG_UP   NAV_BSPC    &kp UP      NAV_DEL     &trans
                     &sk LSHFT   &sk LCTRL   &sk LALT    &sk LGUI    &trans          &kp PG_DN   &kp LEFT    &kp DOWN    &kp RIGHT   &trans
                     &trans      &trans      &trans      &trans      &trans          &trans      &trans      &trans      &trans      &kp ENTER
                                             &trans      &trans      &trans          &trans      &trans
@@ -228,20 +234,20 @@ SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
     // ┃           3 - Numbers                 ┃
     // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
     //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
-    //             ┃    ESC    ┃           ┃           ┃           ┃           ┃   ┃     -     ┃     7     ┃     8     ┃     9     ┃     =     ┃
+    //             ┃           ┃           ┃           ┃           ┃           ┃   ┃     =     ┃     7     ┃     8     ┃     9     ┃     -     ┃
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-    //             ┃   SHIFT   ┃   CTRL    ┃    ALT    ┃    GUI    ┃           ┃   ┃     +     ┃     4     ┃     5     ┃     6     ┃     ,     ┃
+    //             ┃   SHIFT   ┃   CTRL    ┃    ALT    ┃    GUI    ┃           ┃   ┃     ,     ┃     4     ┃     5     ┃     6     ┃     +     ┃
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-    //             ┃           ┃           ┃           ┃           ┃           ┃   ┃     *     ┃     1     ┃     2     ┃     3     ┃     .     ┃
+    //             ┃           ┃           ┃           ┃           ┃           ┃   ┃     .     ┃     1     ┃     2     ┃     3     ┃     0     ┃
     //             ┗━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-    //                                     ┃ SPACE/NAV ┃ █████████ ┃           ┃   ┃           ┃     0     ┃
+    //                                     ┃ SPACE/NAV ┃    NAV    ┃           ┃   ┃ █████████ ┃ MAG SHIFT ┃
     //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┛
      bindings = <
     // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
-                    &kp ESC     &none       &none       &none       &none          &kp MINUS    &kp N7      &kp N8      &kp N9      &kp EQUAL
-                    &sk LSHFT   &sk LCTRL   &sk LALT    &sk LGUI    &none          &kp PLUS     &kp N4      &kp N5      &kp N6      &kp COMMA
-                    &none       &none       &none       &none       &none          &kp ASTRK    &kp N1      &kp N2      &kp N3      &kp DOT
-                                            &trans      &trans      &trans         &trans       &kp N0
+                    &none       &none       &none       &none       &none          &kp EQUAL    &kp N7      &kp N8      &kp N9      &kp MINUS
+                    &sk LSHFT   &sk LCTRL   &sk LALT    &sk LGUI    &none          &kp COMMA    &kp N4      &kp N5      &kp N6      &kp PLUS
+                    &none       &none       &none       &none       &none          &kp DOT      &kp N1      &kp N2      &kp N3      &kp N0
+                                            &trans      &trans      &trans         &trans       &trans
                             >;
             };
 
@@ -259,12 +265,12 @@ SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
     //             ┃   RESET   ┃ USB | BLE ┃  BT PRV   ┃  BT NXT   ┃  BT CLR   ┃   ┃   RESET   ┃    F1     ┃    F2     ┃    F3     ┃    F10    ┃
     //             ┗━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-    //                                     ┃ █████████ ┃ █████████ ┃           ┃   ┃           ┃ MAG SHIFT ┃
+    //                                     ┃ █████████ ┃    NAV    ┃           ┃   ┃ █████████ ┃ MAG SHIFT ┃
     //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┛
      bindings = <
     // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
                  &studio_unlock &kp C_PREV  &kp C_PP    &kp C_NEXT  &kp C_VOL_UP    &none       &kp F7      &kp F8      &kp F9      &kp F12
-                    &kp LSHFT   &kp LCTRL   &kp LALT    &kp LGUI    &kp C_VOL_DN    &none       &kp F4      &kp F5      &kp F6      &kp F11
+                    &sk LSHFT   &sk LCTRL   &sk LALT    &sk LGUI    &kp C_VOL_DN    &none       &kp F4      &kp F5      &kp F6      &kp F11
                     &sys_reset  &out OUT_TOG &bt BT_PRV	&bt BT_NXT  &bt BT_CLR      &sys_reset  &kp F1      &kp F2      &kp F3      &kp F10
                                             &trans      &trans      &trans          &trans      &trans
                             >;
