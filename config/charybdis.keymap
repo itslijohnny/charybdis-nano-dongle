@@ -91,9 +91,9 @@ ZMK_MACRO_ONE_PARAM(motap,
    wait-ms = <0>;
    tap-ms = <5>;
    )
-ZMK_COMBO(mou_scroll,    &mo NAV,  RB1 RB2, MOU)
-#define MB23 &mouse23 MB3 MB2
-ZMK_HOLD_TAP(mouse23, bindings = <&mkp>, <&mkp>; flavor = "balanced"; tapping-term-ms = <200>; quick-tap-ms = <QUICK_TAP_MS>;)
+ZMK_COMBO(mou_mb3,    &mkp MB3,  RB1 RB2, MOU)
+#define MB2_SCRL &mouscrl NAV MB2
+ZMK_HOLD_TAP(mouscrl, bindings = <&mo>, <&mkp>; flavor = "balanced"; tapping-term-ms = <200>; quick-tap-ms = <QUICK_TAP_MS>;)
 
 // Enable FUN layer if NAV and NUM are active
 ZMK_CONDITIONAL_LAYER(fun_layer, NAV NUM, FUN)
@@ -187,7 +187,7 @@ SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
         //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
         //             ┃   SHIFT   ┃   CTRL    ┃    ALT    ┃    GUI    ┃           ┃   ┃           ┃           ┃           ┃           ┃           ┃
         //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-        //             ┃           ┃           ┃           ┃           ┃           ┃   ┃           ┃    MB1    ┃   MB2/3   ┃           ┃           ┃
+        //             ┃           ┃           ┃           ┃           ┃           ┃   ┃           ┃    MB1    ┃ MB2/SCROL ┃           ┃           ┃
         //             ┗━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
         //                                     ┃ SPACE/NAV ┃    NAV    ┃           ┃   ┃ SMART NUM ┃  SCROLL   ┃
         //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┛
@@ -195,7 +195,7 @@ SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
         // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
                         &btap Q     &btap W     &btap F     &btap P     &btap B         &btap J     &btap L     &btap U     &btap Y     &btap SQT
                         &kp LSHFT   &kp LCTRL   &kp LALT    &kp LGUI    &btap G         &btap M     &btap N     &btap E     &btap I     &btap O
-                        &btap Z     &btap X     &btap C     &btap D     &btap V         &btap K     &mkp MB1    MB23        &bdot_morph &btap FSLH
+                        &btap Z     &btap X     &btap C     &btap D     &btap V         &btap K     &mkp MB1    MB2_SCRL    &bdot_morph &btap FSLH
                                                 &motap NAV  &motap NAV  &to BASE        &motap NUM  &trans
                                 >;
                 };
