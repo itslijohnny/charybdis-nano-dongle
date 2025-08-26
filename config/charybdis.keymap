@@ -191,7 +191,7 @@ SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
         //             ┗━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
         //                                     ┃ SPACE/NAV ┃    NAV    ┃           ┃   ┃ SMART NUM ┃  SCROLL   ┃
         //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┛
-         bindings = <a,,aaa
+         bindings = <
         // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
                         &btap Q     &btap W     &btap F     &btap P     &btap B         &btap J     &btap L     &btap U     &btap Y     &btap SQT
                         &kp LSHFT   &kp LCTRL   &kp LALT    &kp LGUI    &btap G         &btap M     &btap N     &btap E     &btap I     &btap O
