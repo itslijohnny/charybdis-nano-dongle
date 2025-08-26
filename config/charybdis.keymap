@@ -49,8 +49,7 @@
 
 #include "combos.dtsi"
 
-#define NAV_BSPC  &mt LA(BSPC) BSPC  // Tap: bspc  | Long-tap: delete word bwd.
-#define NAV_DEL   &mt LA(DEL)  DEL   // Tap: del   | Long-tap: delete word fwd.
+#define MB3_SCROLL  &mt NAV MB3  // Tap: MB3  | Long-tap: SCROLL/NAV
 
 // Define mod-morph with a *single* mod trigger for less repetition.
 #define SIMPLE_MORPH(NAME, MOD, BINDING1, BINDING2) ZMK_MOD_MORPH(NAME, mods = <(MOD_L##MOD | MOD_R##MOD)>; bindings = <BINDING1>, <BINDING2>;)
@@ -94,7 +93,7 @@ ZMK_MACRO_ONE_PARAM(motap,
    wait-ms = <0>;
    tap-ms = <5>;
    )
-ZMK_COMBO(mou_mb3,    &mkp MB3,  RB0 RB1, MOU)
+ZMK_COMBO(mou_mb3,    MB3_SCROLL,  RB1 RB2, MOU)
 
 // Enable FUN layer if NAV and NUM are active
 ZMK_CONDITIONAL_LAYER(fun_layer, NAV NUM, FUN)
@@ -188,7 +187,7 @@ SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
         //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
         //             ┃   SHIFT   ┃   CTRL    ┃    ALT    ┃    GUI    ┃           ┃   ┃           ┃           ┃           ┃           ┃           ┃
         //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-        //             ┃           ┃           ┃           ┃           ┃           ┃   ┃    MB1    ┃    MB2    ┃           ┃           ┃           ┃
+        //             ┃           ┃           ┃           ┃           ┃           ┃   ┃           ┃    MB1    ┃    MB2    ┃           ┃           ┃
         //             ┗━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
         //                                     ┃ SPACE/NAV ┃    NAV    ┃           ┃   ┃ SMART NUM ┃  SCROLL   ┃
         //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┛
@@ -196,8 +195,8 @@ SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
         // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
                         &btap Q     &btap W     &btap F     &btap P     &btap B         &btap J     &btap L     &btap U     &btap Y     &btap SQT
                         &kp LSHFT   &kp LCTRL   &kp LALT    &kp LGUI    &btap G         &btap M     &btap N     &btap E     &btap I     &btap O
-                        &btap Z     &btap X     &btap C     &btap D     &btap V         &mkp MB1    &mkp MB2    &bcomma_morph &bdot_morph &btap FSLH
-                                                &motap NAV  &motap NAV  &to BASE        &motap NUM  &mo NAV
+                        &btap Z     &btap X     &btap C     &btap D     &btap V         &btap K     &mkp MB1    &mkp MB2    &bdot_morph &btap FSLH
+                                                &motap NAV  &motap NAV  &to BASE        &motap NUM  &trans
                                 >;
                 };
 
@@ -209,7 +208,7 @@ SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
     // ┃         2 - Navigation                ┃
     // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
     //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
-    //             ┃    ESC    ┃           ┃  NXT_APP  ┃  NXT_WIN  ┃  NXT_TAB  ┃   ┃   PG_UP   ┃   BSPC    ┃    UP     ┃    DEL    ┃           ┃
+    //             ┃    ESC    ┃    TAB    ┃  NXT_APP  ┃  NXT_WIN  ┃  NXT_TAB  ┃   ┃   PG_UP   ┃   BSPC    ┃    UP     ┃    DEL    ┃           ┃
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
     //             ┃   SHIFT   ┃   CTRL    ┃    ALT    ┃    GUI    ┃           ┃   ┃   PG_DN   ┃   LEFT    ┃   DOWN    ┃   RIGHT   ┃           ┃
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
@@ -219,7 +218,7 @@ SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
     //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┛
      bindings = <
     // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
-                    &kp ESC     &kp TAB     &appswap    &winswap    &tabswap        &kp PG_UP   NAV_BSPC    &kp UP      NAV_DEL     &trans
+                    &kp ESC     &kp TAB     &appswap    &winswap    &tabswap        &kp PG_UP   &kp BSPC    &kp UP      &kp DEL     &trans
                     &sk LSHFT   &sk LCTRL   &sk LALT    &sk LGUI    &trans          &kp PG_DN   &kp LEFT    &kp DOWN    &kp RIGHT   &trans
                     &trans      &trans      &trans      &trans      &trans          &trans      &trans      &trans      &trans      &kp ENTER
                                             &trans      &trans      &trans          &trans      &trans
