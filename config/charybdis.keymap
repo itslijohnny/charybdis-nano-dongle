@@ -91,8 +91,7 @@ ZMK_MACRO_ONE_PARAM(motap,
    wait-ms = <0>;
    tap-ms = <5>;
    )
-ZMK_TAP_DANCE(mb3_scroll, bindings = <&mt NAV MB3>; tapping-term-ms = <200>;)
-ZMK_COMBO(mou_mb3,    &mb3_scroll,  RB1 RB2, MOU)
+ZMK_COMBO(mou_scroll,    &mo NAV,  RB1 RB2, MOU)
 
 // Enable FUN layer if NAV and NUM are active
 ZMK_CONDITIONAL_LAYER(fun_layer, NAV NUM, FUN)
@@ -194,7 +193,7 @@ SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
         // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
                         &btap Q     &btap W     &btap F     &btap P     &btap B         &btap J     &btap L     &btap U     &btap Y     &btap SQT
                         &kp LSHFT   &kp LCTRL   &kp LALT    &kp LGUI    &btap G         &btap M     &btap N     &btap E     &btap I     &btap O
-                        &btap Z     &btap X     &btap C     &btap D     &btap V         &btap K     &mkp MB1    &mkp MB2    &bdot_morph &btap FSLH
+                        &btap Z     &btap X     &btap C     &btap D     &btap V         &btap K     &mkp MB1    &mt MB3 MB2 &bdot_morph &btap FSLH
                                                 &motap NAV  &motap NAV  &to BASE        &motap NUM  &trans
                                 >;
                 };
