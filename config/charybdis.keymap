@@ -92,7 +92,7 @@ ZMK_MACRO_ONE_PARAM(motap,
    tap-ms = <5>;
    )
 ZMK_TAP_DANCE(mb3_scroll, bindings = <&mt NAV MB3>; tapping-term-ms = <200>;)
-ZMK_COMBO(mou_mb3,    mb3_scroll,  RB1 RB2, MOU)
+ZMK_COMBO(mou_mb3,    &mb3_scroll,  RB1 RB2, MOU)
 
 // Enable FUN layer if NAV and NUM are active
 ZMK_CONDITIONAL_LAYER(fun_layer, NAV NUM, FUN)
