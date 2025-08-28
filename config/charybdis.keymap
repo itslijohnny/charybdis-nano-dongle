@@ -220,7 +220,7 @@ SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
     // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
                     &kp ESC     &kp TAB     &appswap    &winswap    &tabswap        &kp PG_UP   &kp BSPC    &kp UP      &kp DEL     &trans
                     &sk LSHFT   &sk LCTRL   &sk LALT    &sk LGUI    &trans          &kp PG_DN   &kp LEFT    &kp DOWN    &kp RIGHT   &trans
-                    &trans      &trans      &trans      &trans      &trans          &trans      &trans      &trans      &trans      &kp ENTER
+                    undo        cut         copy        redo        paste           &trans      &trans      &trans      &trans      &kp ENTER
                                             &trans      &trans      &trans          &trans      &trans
                             >;
             };
