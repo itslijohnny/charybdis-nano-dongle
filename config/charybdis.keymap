@@ -73,23 +73,6 @@ MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS) // Right-hand HRMs.
 
 &mt { MT_CORE };
 
-ZMK_HOLD_TAP(mt_home, bindings = <&masked_home>, <&kp>; MT_CORE)
-ZMK_HOLD_TAP(mt_end, bindings = <&masked_end>, <&kp>; MT_CORE)
-
-#define NAV_LEFT  &mt_home 0   LEFT  // Tap: left  | Long-tap: start of line.
-#define NAV_RIGHT &mt_end 0    RIGHT // Tap: right | Long-tap: end   of line.
-#define NAV_UP    &mt LC(HOME) UP    // Tap: up    | Long-tap: start of doc.
-#define NAV_DOWN  &mt LC(END)  DOWN  // Tap: down  | Long-tap: end   of doc.
-#define NAV_BSPC  &mt LC(BSPC) BSPC  // Tap: bspc  | Long-tap: delete word bwd.
-#define NAV_DEL   &mt LC(DEL)  DEL   // Tap: del   | Long-tap: delete word fwd.
-
-// Mask CTRL on left/right hold to avoid accidental jumps to start/end of doc.
-#define MASK_MODS(NAME, MODS, BINDING)                                         \
-  ZMK_MOD_MORPH(NAME, bindings = <BINDING>, <BINDING>; mods = <MODS>;)
-
-MASK_MODS(masked_home, (MOD_LCTL), &kp HOME)
-MASK_MODS(masked_end,  (MOD_LCTL), &kp END)
-
 /* Magic-shift & auto-layers */
 
 // Tap: repeat after alpha, else sticky-shift |
@@ -110,10 +93,10 @@ ZMK_TAP_DANCE(num_dance, bindings = <&num_word NUM>, <&sl NUM>;
               tapping-term-ms = <200>;)
 
 // Smart-mouse, requires tri-state module.
-ZMK_TRI_STATE(
-    smart_mouse, bindings = <&kt_on MOU>, <&none>, <&kt_off MOU>;
-    ignored-key-positions = <RB1 RB2>;
-    ignored-layers = <MOU NAV>;)
+//ZMK_TRI_STATE(
+//    smart_mouse, bindings = <&kt_on MOU>, <&none>, <&kt_off MOU>;
+//    ignored-key-positions = <RB1 RB2>;
+//    ignored-layers = <MOU NAV>;)
 // MB3 when tapping both mouse keys at the same time
 ZMK_COMBO(mou_mb3,    &mkp MB3,  RB1 RB2, MOU)
 // Mouse scroll when holding MB2
@@ -203,7 +186,7 @@ ZMK_CONDITIONAL_LAYER(fun_layer, NAV NUM, FUN)
         compatible = "zmk,input-listener";
         device = <&trackball_split>;
 
-        input-processors = <&zip_temp_layer MOU 2000>;
+//        input-processors = <&zip_temp_layer MOU 2000>;
 
         scroll {
             layers = <NAV>;
@@ -249,7 +232,7 @@ ZMK_CONDITIONAL_LAYER(fun_layer, NAV NUM, FUN)
     // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
                     &kp Q       &kp W       &kp F       &kp P       &kp B           &kp J       &kp L       &kp U       &kp Y       &kp SQT
                     &hml LSHIFT A &hml LCTRL R &hml LALT S    &hml LGUI T &kp G     &kp M       &hmr LGUI N &hmr LALT E &hmr LCTRL I &hmr RSHIFT O
-                    &kp Z       &kp X       &kp C       &kp D       &kp V           &kp K       &kp H       &comma_morph &dot_morph &kp FSLH
+                    &kp Z       &kp X       &kp C       &kp D       &kp V           &kp K       &kp H       &comma_morph &dot_morph &lt MOU FSLH
                                             &lt_spc NAV 0 SMART_NUM &none           &none       MAGIC_SHIFT
                             >;
             };
@@ -272,10 +255,10 @@ ZMK_CONDITIONAL_LAYER(fun_layer, NAV NUM, FUN)
     //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┛
      bindings = <
     // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
-                    &trans      &trans      &trans      &trans      &trans         &trans     &trans     &trans     &trans     &trans
-                    &trans      &trans      &trans      &trans      &trans         &trans     &trans     &trans     &trans     &trans
-                    &trans      &trans      &trans      &trans      &trans         &trans     &mkp MB1   &mb2scrl   &trans     &trans
-                                            &trans      &trans      &trans         &trans     &trans
+                    &trans      &trans      &trans      &trans      &trans          &trans      &trans      &trans      &trans      &trans
+                    &trans      &trans      &trans      &trans      &trans          &trans      &trans      &trans      &trans      &trans
+                    &trans      &trans      &trans      &trans      &trans          &trans      &mkp MB1    &mb2scrl    &trans      &trans
+                                            &trans      &trans      &trans          &trans     &trans
                             >;
             };
 
@@ -297,8 +280,8 @@ ZMK_CONDITIONAL_LAYER(fun_layer, NAV NUM, FUN)
     //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┛
      bindings = <
     // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
-                    &kp ESC     &kp TAB     &appswap    &winswap    &tabswap        &kp PG_UP   NAV_BSPC    NAV_UP      NAV_DEL     &trans
-                    &sk LSHFT   &sk LCTRL   &sk LALT    &sk LGUI    &trans          &kp PG_DN   NAV_LEFT    NAV_DOWN    NAV_RIGHT   &trans
+                    &kp ESC     &kp TAB     &appswap    &winswap    &tabswap        &kp PG_UP   &kp BSPC    &kp UP      &kp DEL     &trans
+                    &sk LSHFT   &sk LCTRL   &sk LALT    &sk LGUI    &trans          &kp PG_DN   &kp LEFT    &kp DOWN    &kp RIGHT   &trans
                     undo        cut         copy        redo        paste           &trans      &trans      &trans      &trans      &kp ENTER
                                             &trans      &trans      &trans          &trans      &trans
                             >;
