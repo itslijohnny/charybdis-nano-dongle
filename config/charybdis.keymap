@@ -95,19 +95,9 @@ MASK_MODS(masked_end,  (MOD_LCTL), &kp END)
 // Tap: repeat after alpha, else sticky-shift |
 // Shift + tap/ double-tap: caps-word | Hold: shift.
 #define MAGIC_SHIFT &magic_shift LSHFT 0
-ZMK_HOLD_TAP(magic_shift, bindings = <&kp>, <&magic_shift_tap>;
-             flavor = "balanced"; tapping-term-ms = <200>;
-             quick-tap-ms = <QUICK_TAP_MS>;)
-ZMK_MOD_MORPH(magic_shift_tap, bindings = <&shift_repeat>, <&caps_word>;
-              mods = <(MOD_LSFT)>;)
-ZMK_ADAPTIVE_KEY(
-    shift_repeat, bindings = <&sk LSHFT>;
-    repeat {
-      trigger-keys = <A B C D E F G H I J K L M N O P Q R S T U V W X Y Z>;
-      bindings = <&key_repeat>;
-      max-prior-idle-ms = <1200>;
-      strict-modifiers;
-    };)
+ZMK_HOLD_TAP(magic_shift, bindings = <&kp>, <&magic_shift_tap>; flavor = "balanced"; tapping-term-ms = <200>; quick-tap-ms = <QUICK_TAP_MS>;)
+ZMK_MOD_MORPH(magic_shift_tap, bindings = <&shift_repeat>, <&caps_word>; mods = <(MOD_LSFT)>;)
+ZMK_ADAPTIVE_KEY(shift_repeat, bindings = <&sk LSHFT>; repeat { trigger-keys = <A B C D E F G H I J K L M N O P Q R S T U V W X Y Z>; bindings = <&key_repeat>; max-prior-idle-ms = <1200>; strict-modifiers; };)
 &caps_word { // Mods deactivate caps-word, requires PR #1451. [TODO: rebase]
   /delete-property/ ignore-modifiers;
 };
@@ -260,7 +250,7 @@ ZMK_CONDITIONAL_LAYER(fun_layer, NAV NUM, FUN)
                     &kp Q       &kp W       &kp F       &kp P       &kp B           &kp J       &kp L       &kp U       &kp Y       &kp SQT
                     &hml LSHIFT A &hml LCTRL R &hml LALT S    &hml LGUI T &kp G     &kp M       &hmr LGUI N &hmr LALT E &hmr LCTRL I &hmr RSHIFT O
                     &kp Z       &kp X       &kp C       &kp D       &kp V           &kp K       &kp H       &comma_morph &dot_morph &kp FSLH
-                                            &lt_spc NAV 0 SMART_NUM   &none           &none       MAGIC_SHIFT
+                                            &lt_spc NAV 0 SMART_NUM &none           &none       MAGIC_SHIFT
                             >;
             };
 
