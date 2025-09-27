@@ -93,11 +93,7 @@ ZMK_HOLD_TAP(smart_num, bindings = <&mo>, <&num_dance>; flavor = "balanced";
 ZMK_TAP_DANCE(num_dance, bindings = <&num_word NUM>, <&sl NUM>;
               tapping-term-ms = <200>;)
 
-// Smart-mouse, requires tri-state module.
-//ZMK_TRI_STATE(
-//    smart_mouse, bindings = <&kt_on MOU>, <XXX  >, <&kt_off MOU>;
-//    ignored-key-positions = <RB1 RB2>;
-//    ignored-layers = <MOU NAV>;)
+// Trackball
 // MB3 when tapping both mouse keys at the same time
 ZMK_COMBO(mou_mb3,    &mkp MB3,  RB1 RB2, MOU)
 // Mouse scroll when holding MB2
@@ -114,44 +110,6 @@ ZMK_TRI_STATE(tabswap, bindings = <&kt_on LCTRL>, <&kp TAB>, <&kt_off LCTRL>; ig
 #define SIMPLE_MORPH(NAME, MOD, BINDING1, BINDING2)                            \
   ZMK_MOD_MORPH(NAME, mods = <(MOD_L##MOD | MOD_R##MOD)>;                      \
                 bindings = <BINDING1>, <BINDING2>;)
-
-// Tap: space | Shift + tap: dot -> space -> sticky shift | Hold: nav layer.
-//#define SPC_NAV &lt_spc NAV 0
-//ZMK_HOLD_TAP(lt_spc, bindings = <&mo>, <&spc_morph>; flavor = "balanced"; tapping-term-ms = <200>; quick-tap-ms = <QUICK_TAP_MS>;)
-//SIMPLE_MORPH(spc_morph, SFT, &kp SPACE, &dot_spc)
-//ZMK_MACRO(dot_spc, bindings = <&kp DOT &kp SPACE &sk LSHFT>; wait-ms = <0>; tap-ms = <5>;)
-
-
-// Shift + tap/ double-tap: caps-word | Hold: shift.
-//#define MAGIC_SHIFT &magic_shift LSHFT 0
-//ZMK_HOLD_TAP(magic_shift, bindings = <&kp>, <&magic_shift_tap>; flavor = "balanced"; tapping-term-ms = <200>; quick-tap-ms = <QUICK_TAP_MS>;)
-//ZMK_MOD_MORPH(magic_shift_tap, bindings = <&sk LSHFT>, <&caps_word>; mods = <(MOD_LSFT)>;)
-//&caps_word {
-//  /delete-property/ ignore-modifiers;
-//};
-
-// Tap: num-word | double-tap: sticky num-layer | Hold: num-layer.
-//#define SMART_NUM &smart_num NUM 0
-//ZMK_HOLD_TAP(smart_num, bindings = <&mo>, <&num_dance>; flavor = "balanced"; tapping-term-ms = <200>; quick-tap-ms = <QUICK_TAP_MS>;)
-//ZMK_TAP_DANCE(num_dance, bindings = <&num_word NUM>, <&sl NUM>; tapping-term-ms = <200>;)
-
-// Magic-mouse
-//ZMK_MACRO_ONE_PARAM(btap, bindings = <&to BASE>, <&macro_param_1to1>, <&kp MACRO_PLACEHOLDER>; wait-ms = <0>; tap-ms = <5>;)
-//ZMK_MACRO(bdot_morph, bindings = <&to BASE>, <&dot_morph>; wait-ms = <0>; tap-ms = <5>;)
-//ZMK_MACRO(bcomma_morph, bindings = <&to BASE>, <&comma_morph>; wait-ms = <0>; tap-ms = <5>;)
-//ZMK_MACRO_ONE_PARAM(motap,
-//    bindings = <&macro_param_1to1>,
-//               <&macro_press &mo MACRO_PLACEHOLDER>,
-//               <&macro_pause_for_release>,
-//               <&macro_param_1to1>,
-//               <&macro_release &mo MACRO_PLACEHOLDER>,
-//               <&macro_tap &to BASE>;
-//   wait-ms = <0>;
-//   tap-ms = <5>;
-//   )
-//ZMK_COMBO(mou_mb3,    &mkp MB3,  RB1 RB2, MOU)
-//#define MB2_SCRL &mouscrl NAV MB2
-//ZMK_HOLD_TAP(mouscrl, bindings = <&mo>, <&mkp>; flavor = "balanced"; tapping-term-ms = <200>; quick-tap-ms = <QUICK_TAP_MS>;)
 
 // Define mod-morph with a *single* mod trigger for less repetition.
 #define SIMPLE_MORPH(NAME, MOD, BINDING1, BINDING2)                            \
@@ -186,8 +144,6 @@ ZMK_CONDITIONAL_LAYER(fun_layer, NAV NUM, FUN)
     trackball_listener {
         compatible = "zmk,input-listener";
         device = <&trackball_split>;
-
-//        input-processors = <&zip_temp_layer MOU 2000>;
 
         scroll {
             layers = <NAV>;
@@ -227,14 +183,14 @@ ZMK_CONDITIONAL_LAYER(fun_layer, NAV NUM, FUN)
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
     //             ┃     Z     ┃     X     ┃     C     ┃     D     ┃     V     ┃   ┃     K     ┃     H     ┃     ,     ┃     .     ┃     /     ┃
     //             ┗━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-    //                                     ┃   SPACE   ┃    NAV    ┃           ┃   ┃ SMART NUM ┃ MAG SHIFT ┃
+    //                                     ┃ SPACE/NAV ┃           ┃           ┃   ┃ SMART NUM ┃ MAG SHIFT ┃
     //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┛
      bindings = <
     // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
                     &kp Q       &kp W       &kp F       &kp P       &kp B           &kp J       &kp L       &kp U       &kp Y       &kp SQT
                     &hml LSHIFT A &hml LCTRL R &hml LALT S    &hml LGUI T &kp G     &kp M       &hmr LGUI N &hmr LALT E &hmr LCTRL I &hmr RSHIFT O
                     &kp Z       &kp X       &kp C       &kp D       &kp V           &kp K       &kp H       &comma_morph &dot_morph &lt MOU FSLH
-                                            &kp SPACE   &mo NAV     XXX             SMART_NUM   MAGIC_SHIFT
+                                            &kp SPACE   XXX     XXX             SMART_NUM   MAGIC_SHIFT
                             >;
             };
 
@@ -252,7 +208,7 @@ ZMK_CONDITIONAL_LAYER(fun_layer, NAV NUM, FUN)
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
     //             ┃           ┃           ┃           ┃           ┃           ┃   ┃           ┃    MB1    ┃ MB2/SCROL ┃           ┃           ┃
     //             ┗━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-    //                                     ┃   SPACE   ┃    NAV    ┃           ┃   ┃ SMART NUM ┃ MAG SHIFT ┃
+    //                                     ┃ SPACE/NAV ┃           ┃           ┃   ┃ SMART NUM ┃ MAG SHIFT ┃
     //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┛
      bindings = <
     // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
@@ -277,7 +233,7 @@ ZMK_CONDITIONAL_LAYER(fun_layer, NAV NUM, FUN)
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
     //             ┃           ┃           ┃           ┃           ┃           ┃   ┃           ┃           ┃           ┃           ┃   ENTER   ┃
     //             ┗━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-    //                                     ┃   SPACE   ┃ █████████ ┃           ┃   ┃ SMART NUM ┃ MAG SHIFT ┃
+    //                                     ┃ █████████ ┃           ┃           ┃   ┃ SMART NUM ┃ MAG SHIFT ┃
     //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┛
      bindings = <
     // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
@@ -302,7 +258,7 @@ ZMK_CONDITIONAL_LAYER(fun_layer, NAV NUM, FUN)
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
     //             ┃           ┃     1     ┃     2     ┃     3     ┃           ┃   ┃           ┃           ┃           ┃           ┃           ┃
     //             ┗━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-    //                                     ┃     0     ┃    NAV    ┃           ┃   ┃ █████████ ┃ MAG SHIFT ┃
+    //                                     ┃     0     ┃           ┃           ┃   ┃ █████████ ┃ MAG SHIFT ┃
     //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┛
      bindings = <
     // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
@@ -327,7 +283,7 @@ ZMK_CONDITIONAL_LAYER(fun_layer, NAV NUM, FUN)
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
     //             ┃   RESET   ┃ USB | BLE ┃  BT PRV   ┃  BT NXT   ┃  BT CLR   ┃   ┃   RESET   ┃    F1     ┃    F2     ┃    F3     ┃    F10    ┃
     //             ┗━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-    //                                     ┃   SPACE   ┃ █████████ ┃           ┃   ┃ █████████ ┃ MAG SHIFT ┃
+    //                                     ┃ █████████ ┃           ┃           ┃   ┃ █████████ ┃ MAG SHIFT ┃
     //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┛
      bindings = <
     // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
