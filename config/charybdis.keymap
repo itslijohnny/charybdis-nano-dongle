@@ -260,7 +260,7 @@ ZMK_CONDITIONAL_LAYER(fun_layer, NAV NUM, FUN)
                     &kp Q       &kp W       &kp F       &kp P       &kp B           &kp J       &kp L       &kp U       &kp Y       &kp SQT
                     &hml LSHIFT A &hml LCTRL R &hml LALT S    &hml LGUI T &kp G     &kp M       &hmr LGUI N &hmr LALT E &hmr LCTRL I &hmr RSHIFT O
                     &kp Z       &kp X       &kp C       &kp D       &kp V           &kp K       &kp H       &comma_morph &dot_morph &kp FSLH
-                                            SPC_NAV     SMART_NUM   &none           &none       MAGIC_SHIFT
+                                            &lt_spc NAV 0 SMART_NUM   &none           &none       MAGIC_SHIFT
                             >;
             };
 
