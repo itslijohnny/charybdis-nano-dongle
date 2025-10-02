@@ -286,7 +286,7 @@ ZMK_CONDITIONAL_LAYER(fun_layer, NAV NUM, FUN)
 
                     ___         &kp AT      &kp HASH    &kp DLLR    &kp PRCNT       &kp ASTRK   &kp LPAR    &kp RPAR   &kp MINUS    &kp EQUAL
                     &sk LSHFT   &sk LCTRL   &sk LALT    &sk LGUI    ___             &kp AMPS    &kp LBKT    &kp RBKT   &kp GRAVE    &kp BSLH
-                    ___     ___     ___     ___         ___         ___             &kp UNDER   &kp LT      &kp GT     &kp CARET    &kp EXCL
+                    ___         ___         ___         ___         ___             &kp UNDER   &kp LT      &kp GT     &kp CARET    &kp EXCL
                                             ___         ___         ___             ___         ___
                             >;
             };
