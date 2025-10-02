@@ -48,5 +48,5 @@ ZMK_COMBO(grave, &kp GRAVE,    RM2 RB2,     BASE MOU NAV NUM, COMBO_TERM_SLOW, C
 ZMK_COMBO(pipe,  &kp PIPE,     RM3 RB3,     BASE MOU NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
 
 // Reset and bootload dongle
-ZMK_COMBO(centralboot, &bootloader, LT4 LT0 RT0 RT4, BASE)
-ZMK_COMBO(centralreset, &sys_reset, LT4 LT3 RT3 RT4, BASE)
+ZMK_COMBO(centralboot,  &bootloader, LT4 LT0 RT0 RT4, BASE)
+ZMK_COMBO(centralreset, &sys_reset,  LT4 LT3 RT3 RT4, BASE)

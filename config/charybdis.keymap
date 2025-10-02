@@ -25,6 +25,7 @@
 #define MOU  1
 #define NAV  2
 #define NUM  3
+#define SYM  4
 #define FUN  4
 
 &sk {
@@ -111,11 +112,6 @@ ZMK_TRI_STATE(tabswap, bindings = <&kt_on LCTRL>, <&kp TAB>, <&kt_off LCTRL>; ig
   ZMK_MOD_MORPH(NAME, mods = <(MOD_L##MOD | MOD_R##MOD)>;                      \
                 bindings = <BINDING1>, <BINDING2>;)
 
-// Define mod-morph with a *single* mod trigger for less repetition.
-#define SIMPLE_MORPH(NAME, MOD, BINDING1, BINDING2)                            \
-  ZMK_MOD_MORPH(NAME, mods = <(MOD_L##MOD | MOD_R##MOD)>;                      \
-                bindings = <BINDING1>, <BINDING2>;)
-
 // Tap: comma | Shift + tap: semicolon | Ctrl + shift + tap: <.
 SIMPLE_MORPH(comma_morph, SFT, &kp COMMA, &comma_inner_morph)
 SIMPLE_MORPH(comma_inner_morph, CTL, &kp SEMICOLON, &kp LESS_THAN)
@@ -181,7 +177,7 @@ ZMK_CONDITIONAL_LAYER(fun_layer, NAV NUM, FUN)
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
     //             ┃     A     ┃     R     ┃     S     ┃     T     ┃     G     ┃   ┃     M     ┃     N     ┃     E     ┃     I     ┃     O     ┃
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-    //             ┃     Z     ┃     X     ┃     C     ┃     D     ┃     V     ┃   ┃     K     ┃     H     ┃     ,     ┃     .     ┃     /     ┃
+    //             ┃  Z / SYM  ┃     X     ┃     C     ┃     D     ┃     V     ┃   ┃     K     ┃     H     ┃     ,     ┃     .     ┃     /     ┃
     //             ┗━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
     //                                     ┃ SPACE/NAV ┃           ┃           ┃   ┃ SMART NUM ┃ MAG SHIFT ┃
     //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┛
@@ -189,7 +185,7 @@ ZMK_CONDITIONAL_LAYER(fun_layer, NAV NUM, FUN)
     // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
                     &kp Q       &kp W       &kp F       &kp P       &kp B           &kp J       &kp L       &kp U       &kp Y       &kp SQT
                     &hml LSHIFT A &hml LCTRL R &hml LALT S    &hml LGUI T &kp G     &kp M       &hmr LGUI N &hmr LALT E &hmr LCTRL I &hmr RSHIFT O
-                    &kp Z       &kp X       &kp C       &kp D       &kp V           &kp K       &kp H       &comma_morph &dot_morph &lt MOU FSLH
+                    &lt SYM Z   &kp X       &kp C       &kp D       &kp V           &kp K       &kp H       &comma_morph &dot_morph &lt MOU FSLH
                                             &lt_spc NAV 0 XXX       XXX             SMART_NUM   MAGIC_SHIFT
                             >;
             };
@@ -271,6 +267,32 @@ ZMK_CONDITIONAL_LAYER(fun_layer, NAV NUM, FUN)
 
     // ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
+                SYM {
+    display-name = "SYM";
+    // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+    // ┃           2 - Symbols                 ┃
+    // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+    //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
+    //             ┃           ┃     @     ┃     #     ┃     $     ┃     %     ┃   ┃     *     ┃     (     ┃     )     ┃     -     ┃     =     ┃
+    //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
+    //             ┃   SHIFT   ┃   CTRL    ┃    ALT    ┃    GUI    ┃           ┃   ┃     &     ┃     [     ┃     ]     ┃     `     ┃     \     ┃
+    //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
+    //             ┃ █████████ ┃           ┃           ┃           ┃           ┃   ┃     _     ┃     <     ┃     >     ┃     ^     ┃     !     ┃
+    //             ┗━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
+    //                                     ┃ SPACE/NAV ┃           ┃           ┃   ┃ SMART NUM ┃ MAG SHIFT ┃
+    //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┛
+     bindings = <
+    // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
+
+                    ___         &kp AT      &kp HASH    &kp DLLR    &kp PRCNT       &kp ASTRK   &kp LPAR    &kp RPAR   &kp MINUS    &kp EQUAL
+                    &sk LSHFT   &sk LCTRL   &sk LALT    &sk LGUI    ___             &kp AMPS    &kp LBKT    &kp RBKT   &kp GRAVE    &kp BSLH
+                    ___     ___     ___     ___         ___         ___             &kp UNDER   &kp LT      &kp GT     &kp CARET    &kp EXCL
+                                            ___         ___         ___             ___         ___
+                            >;
+            };
+
+    // ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+
             FUN {
     display-name = "FUN";
     // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -281,7 +303,7 @@ ZMK_CONDITIONAL_LAYER(fun_layer, NAV NUM, FUN)
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
     //             ┃   SHIFT   ┃   CTRL    ┃    ALT    ┃    GUI    ┃  VOL_DN   ┃   ┃           ┃    F4     ┃    F5     ┃    F6     ┃    F11    ┃
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-    //             ┃   RESET   ┃ USB | BLE ┃  BT PRV   ┃  BT NXT   ┃  BT CLR   ┃   ┃   RESET   ┃    F1     ┃    F2     ┃    F3     ┃    F10    ┃
+    //             ┃           ┃ USB | BLE ┃  BT PRV   ┃  BT NXT   ┃  BT CLR   ┃   ┃           ┃    F1     ┃    F2     ┃    F3     ┃    F10    ┃
     //             ┗━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
     //                                     ┃ █████████ ┃           ┃           ┃   ┃ █████████ ┃ MAG SHIFT ┃
     //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┛
