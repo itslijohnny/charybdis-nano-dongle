@@ -24,8 +24,8 @@
 #define BASE 0
 #define MOU  1
 #define NAV  2
-#define NUM  3
-#define SYM  4
+#define SYM  3
+#define NUM  4
 #define FUN  5
 
 &sk {
@@ -134,8 +134,8 @@ ZMK_MACRO(dot_spc, bindings = <&kp SPACE>; wait-ms = <0>;
 /* Keymap */
 
 // Enable FUN layer if NAV and NUM are active
-ZMK_CONDITIONAL_LAYER(fun_layer, NAV SYM, FUN)
-//ZMK_CONDITIONAL_LAYER(num_layer, MOU SYM, NUM)
+ZMK_CONDITIONAL_LAYER(fun_layer, NAV SYM, NUN)
+ZMK_CONDITIONAL_LAYER(num_layer, MOU SYM, FUM)
 
 / {
     trackball_listener {
@@ -178,16 +178,16 @@ ZMK_CONDITIONAL_LAYER(fun_layer, NAV SYM, FUN)
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
     //             ┃     A     ┃     R     ┃     S     ┃     T     ┃     G     ┃   ┃     M     ┃     N     ┃     E     ┃     I     ┃     O     ┃
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-    //             ┃  Z / SYM  ┃     X     ┃     C     ┃     D     ┃     V     ┃   ┃     K     ┃     H     ┃     ,     ┃     .     ┃  / / MOU  ┃
+    //             ┃     Z     ┃     X     ┃     C     ┃     D     ┃     V     ┃   ┃     K     ┃     H     ┃     ,     ┃     .     ┃  / / MOU  ┃
     //             ┗━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-    //                                     ┃ SPACE/NAV ┃           ┃           ┃   ┃ SMART NUM ┃ MAG SHIFT ┃
+    //                                     ┃ SPACE/NAV ┃ MAG SHIFT ┃           ┃   ┃           ┃    SYM    ┃
     //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┛
      bindings = <
     // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
                     &kp Q       &kp W       &kp F       &kp P       &kp B           &kp J       &kp L       &kp U       &kp Y       &kp SQT
                     &hml LGUI A &hml LALT R &hml LSHIFT S &hml LCTRL T &kp G        &kp M       &hmr LCTRL N &hmr RSHIFT E &hmr LALT I &hmr LGUI O
-                    &lt SYM Z   &kp X       &kp C       &kp D       &kp V           &kp K       &kp H       &comma_morph &dot_morph &lt MOU FSLH
-                                            &mo NAV     MAGIC_SHIFT &mo FUN         XXX         &kp SPACE
+                    &kp Z       &kp X       &kp C       &kp D       &kp V           &kp K       &kp H       &comma_morph &dot_morph &lt MOU FSLH
+                                            &lt_spc NAV 0 MAGIC_SHIFT &mo FUN       XXX         &mo SYM
                             >;
             };
 
@@ -230,7 +230,7 @@ ZMK_CONDITIONAL_LAYER(fun_layer, NAV SYM, FUN)
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
     //             ┃           ┃           ┃           ┃           ┃           ┃   ┃           ┃           ┃           ┃           ┃   ENTER   ┃
     //             ┗━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-    //                                     ┃ █████████ ┃           ┃           ┃   ┃ SMART NUM ┃ MAG SHIFT ┃
+    //                                     ┃ █████████ ┃ MAG SHIFT ┃           ┃   ┃           ┃    SYM    ┃
     //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┛
      bindings = <
     // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
@@ -246,23 +246,23 @@ ZMK_CONDITIONAL_LAYER(fun_layer, NAV SYM, FUN)
             SYM {
     display-name = "SYM";
     // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-    // ┃           4 - Symbols                 ┃
+    // ┃           3 - Symbols                 ┃
     // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
     //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
     //             ┃           ┃     @     ┃     #     ┃     $     ┃     %     ┃   ┃     *     ┃     (     ┃     )     ┃     -     ┃     =     ┃
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
     //             ┃    GUI    ┃    ALT    ┃   SHIFT   ┃    CTRL   ┃     ^     ┃   ┃     &     ┃     [     ┃     ]     ┃     `     ┃     \     ┃
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-    //             ┃ █████████ ┃           ┃           ┃           ┃           ┃   ┃     _     ┃     <     ┃     >     ┃     ~     ┃  ! / MOU  ┃
+    //             ┃           ┃           ┃           ┃           ┃           ┃   ┃     _     ┃     <     ┃     >     ┃     ~     ┃     !     ┃
     //             ┗━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-    //                                     ┃ SPACE/NAV ┃           ┃           ┃   ┃ SMART NUM ┃ MAG SHIFT ┃
+    //                                     ┃ SPACE/NAV ┃ MAG SHIFT ┃           ┃   ┃           ┃ █████████ ┃
     //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┛
      bindings = <
     // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
 
                     ___         &kp AT      &kp HASH    &kp DLLR    &kp PRCNT       &kp ASTRK   &kp LPAR    &kp RPAR   &kp MINUS    &kp EQUAL
                     ___         ___         ___         ___         &kp CARET       &kp AMPS    &kp LBKT    &kp RBKT   &kp GRAVE    &kp BSLH
-                    ___         ___         ___         ___         ___             &kp UNDER   &kp LT      &kp GT     &kp TILDE    &lt MOU EXCL
+                    ___         ___         ___         ___         ___             &kp UNDER   &kp LT      &kp GT     &kp TILDE    &kp EXCL
                                             ___         ___         ___             ___         ___
                             >;
             };
@@ -273,22 +273,22 @@ ZMK_CONDITIONAL_LAYER(fun_layer, NAV SYM, FUN)
             NUM {
     display-name = "NUM";
     // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-    // ┃           3 - Numbers                 ┃
+    // ┃           4 - Numbers                 ┃
     // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
     //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
-    //             ┃           ┃     7     ┃     8     ┃     9     ┃           ┃   ┃           ┃           ┃           ┃           ┃           ┃
+    //             ┃           ┃     7     ┃     8     ┃     9     ┃           ┃   ┃           ┃    F7     ┃    F8     ┃    F9     ┃    F12    ┃
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-    //             ┃           ┃     4     ┃     5     ┃     6     ┃           ┃   ┃           ┃           ┃           ┃           ┃           ┃
+    //             ┃     0     ┃     4     ┃     5     ┃     6     ┃           ┃   ┃           ┃    F4     ┃    F5     ┃    F6     ┃    F11    ┃
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-    //             ┃           ┃     1     ┃     2     ┃     3     ┃           ┃   ┃           ┃           ┃           ┃           ┃           ┃
+    //             ┃           ┃     1     ┃     2     ┃     3     ┃           ┃   ┃           ┃    F1     ┃    F2     ┃    F3     ┃    F10    ┃
     //             ┗━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-    //                                     ┃ SPACE/NAV ┃           ┃           ┃   ┃ █████████ ┃ MAG SHIFT ┃
+    //                                     ┃ █████████ ┃ MAG SHIFT ┃           ┃   ┃           ┃ █████████ ┃
     //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┛
      bindings = <
     // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
-                    XXX         &kp N7      &kp N8      &kp N9      &studio_unlock             ___         ___         ___         ___         ___
-                    XXX         &hml LCTRL N4 &hml LALT N5 &hml LGUI N6 XXX         ___         ___         ___         ___         ___
-                    XXX         &kp N1      &kp N2      &kp N3      XXX             ___         ___         ___         ___         ___
+                    XXX         &kp N7      &kp N8      &kp N9      ___             ___         &kp F7      &kp F8      &kp F9      &kp F12
+                    &hml LGUI N0 &hml LALT N4 &hml LSHIFT N5 &hml LCTRL N6 XXX      ___         &hmr LCTRL F4 &hmr RSHIFT F5 &hmr LALT F6 &hmr LGUI F11
+                    XXX         &kp N1      &kp N2      &kp N3      XXX             ___         &kp F1      &kp F2      &kp F3      &kp F10
                                             ___         ___         ___             ___         ___
                             >;
             };
@@ -301,19 +301,19 @@ ZMK_CONDITIONAL_LAYER(fun_layer, NAV SYM, FUN)
     // ┃          5 - Function                 ┃
     // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
     //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
-    //             ┃  UNLOCK   ┃   PREV    ┃   PLAY    ┃   NEXT    ┃  VOL_UP   ┃   ┃           ┃    F7     ┃    F8     ┃    F9     ┃    F12    ┃
+    //             ┃  UNLOCK   ┃   PREV    ┃   PLAY    ┃   NEXT    ┃  VOL_UP   ┃   ┃           ┃           ┃           ┃           ┃           ┃
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-    //             ┃    GUI    ┃    ALT    ┃   SHIFT   ┃    CTRL   ┃  VOL_DN   ┃   ┃           ┃    F4     ┃    F5     ┃    F6     ┃    F11    ┃
+    //             ┃    GUI    ┃    ALT    ┃   SHIFT   ┃    CTRL   ┃  VOL_DN   ┃   ┃           ┃           ┃           ┃           ┃           ┃
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-    //             ┃           ┃ USB | BLE ┃  BT PRV   ┃  BT NXT   ┃  BT CLR   ┃   ┃           ┃    F1     ┃    F2     ┃    F3     ┃    F10    ┃
+    //             ┃           ┃ USB | BLE ┃  BT PRV   ┃  BT NXT   ┃  BT CLR   ┃   ┃           ┃           ┃           ┃           ┃ █████████ ┃
     //             ┗━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-    //                                     ┃ █████████ ┃           ┃           ┃   ┃ █████████ ┃ MAG SHIFT ┃
+    //                                     ┃ SPACE/NAV ┃ MAG SHIFT ┃           ┃   ┃           ┃ █████████ ┃
     //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┛
      bindings = <
     // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
-                 &studio_unlock &kp C_PREV  &kp C_PP    &kp C_NEXT  &kp C_VOL_UP    XXX         &kp F7      &kp F8      &kp F9      &kp F12
-                    ___         ___         ___         ___         &kp C_VOL_DN    XXX         &kp F4      &kp F5      &kp F6      &kp F11
-                    XXX         &out OUT_TOG &bt BT_PRV	&bt BT_NXT  &bt BT_CLR      XXX         &kp F1      &kp F2      &kp F3      &kp F10
+                 &studio_unlock &kp C_PREV  &kp C_PP    &kp C_NEXT  &kp C_VOL_UP    ___         ___         ___         ___         ___
+                    ___         ___         ___         ___         &kp C_VOL_DN    ___         ___         ___         ___         ___
+                    XXX         &out OUT_TOG &bt BT_PRV	&bt BT_NXT  &bt BT_CLR      ___         ___         ___         ___         ___
                                             ___         ___         ___             ___         ___
                             >;
             };
