@@ -285,7 +285,7 @@ ZMK_CONDITIONAL_LAYER(num_layer, SYM MOU, NUM)
     //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┛
      bindings = <
     // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
-                    XXX         &kp N7      &kp N8      &kp N9      XXX             ___         ___         ___         ___         ___
+                    XXX         &kp N7      &kp N8      &kp N9      &studio_unlock             ___         ___         ___         ___         ___
                     XXX         &hml LCTRL N4 &hml LALT N5 &hml LGUI N6 XXX       ___         ___         ___         ___         ___
                     XXX         &kp N1      &kp N2      &kp N3      XXX             ___         ___         ___         ___         ___
                                             &kp N0      ___         ___             ___         ___
