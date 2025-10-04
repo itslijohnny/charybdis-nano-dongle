@@ -134,8 +134,8 @@ ZMK_MACRO(dot_spc, bindings = <&kp SPACE>; wait-ms = <0>;
 /* Keymap */
 
 // Enable FUN layer if NAV and NUM are active
-ZMK_CONDITIONAL_LAYER(fun_layer, NAV SYM, NUN)
-ZMK_CONDITIONAL_LAYER(num_layer, MOU SYM, FUM)
+ZMK_CONDITIONAL_LAYER(fun_layer, NAV SYM, NUM)
+ZMK_CONDITIONAL_LAYER(num_layer, MOU SYM, FUN)
 
 / {
     trackball_listener {
