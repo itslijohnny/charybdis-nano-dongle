@@ -182,7 +182,7 @@ ZMK_CONDITIONAL_LAYER(num_layer, MOU SYM, FUN)
     // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
                     &kp Q       &kp W       &kp F       &kp P       &kp B           &kp J       &kp L       &kp U       &kp Y       &kp SQT
                     &hml LSHIFT A &hml LCTRL R &hml LALT S &hml LGUI T &kp G        &kp M       &hmr LGUI N &hmr LALT E &hmr LCTRL I &hmr RSHIFT O
-                    &lt SYM Z   &kp X       &kp C       &kp D       &kp V           &kp K       &kp H       &comma_morph &kp dot_morph &lt MOU FSLH
+                    &lt SYM Z   &kp X       &kp C       &kp D       &kp V           &kp K       &kp H       &comma_morph &dot_morph &lt MOU FSLH
                                             &lt_spc NAV 0 XXX       XXX             XXX         MAGIC_SHIFT
                             >;
             };
