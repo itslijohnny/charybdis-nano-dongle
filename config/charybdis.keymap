@@ -116,6 +116,11 @@ SIMPLE_MORPH(spc_morph, SFT, &kp SPACE, &dot_spc)
 ZMK_MACRO(dot_spc, bindings = <&kp SPACE>; wait-ms = <0>;
           tap-ms = <5>;)
 
+// Tap: excl | Shift + tap: qmark. | Hold: fun layer
+ZMK_HOLD_TAP(lt_excl, bindings = <&mo>, <&excl_morph>; flavor = "balanced";
+             tapping-term-ms = <200>; quick-tap-ms = <200>;)
+SIMPLE_MORPH(excl_morph, SFT, &kp EXCL, &kp QMARK)
+
 ZMK_HOLD_TAP(lt_undo, bindings = <&mo>, <&kp>; flavor = "balanced";
              tapping-term-ms = <200>; quick-tap-ms = <200>;)
 
@@ -174,7 +179,7 @@ ZMK_CONDITIONAL_LAYER(num_layer, MOU SYM, FUN)
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
     //             ┃     A     ┃     R     ┃     S     ┃     T     ┃     G     ┃   ┃     M     ┃     N     ┃     E     ┃     I     ┃     O     ┃
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-    //             ┃  Z / SYM  ┃     X     ┃     C     ┃     D     ┃     V     ┃   ┃     K     ┃     H     ┃     ,     ┃     .     ┃  / / MOU  ┃
+    //             ┃  Z / SYM  ┃     X     ┃     C     ┃     D     ┃     V     ┃   ┃     K     ┃     H     ┃     ,     ┃     .     ┃  ! / MOU  ┃
     //             ┗━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
     //                                     ┃ SPACE/NAV ┃           ┃           ┃   ┃           ┃ MAG SHIFT ┃
     //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┛
@@ -182,7 +187,7 @@ ZMK_CONDITIONAL_LAYER(num_layer, MOU SYM, FUN)
     // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
                     &kp Q       &kp W       &kp F       &kp P       &kp B           &kp J       &kp L       &kp U       &kp Y       &kp SQT
                     &hml LSHIFT A &hml LCTRL R &hml LALT S &hml LGUI T &kp G        &kp M       &hmr LGUI N &hmr LALT E &hmr LCTRL I &hmr RSHIFT O
-                    &lt SYM Z   &kp X       &kp C       &kp D       &kp V           &kp K       &kp H       &comma_morph &dot_morph &lt MOU FSLH
+                    &lt SYM Z   &kp X       &kp C       &kp D       &kp V           &kp K       &kp H       &comma_morph &dot_morph &lt_excl MOU 0
                                             &lt_spc NAV 0 XXX       XXX             XXX         MAGIC_SHIFT
                             >;
             };
@@ -249,7 +254,7 @@ ZMK_CONDITIONAL_LAYER(num_layer, MOU SYM, FUN)
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
     //             ┃   SHIFT   ┃   CTRL    ┃    ALT    ┃    GUI    ┃     ^     ┃   ┃     &     ┃     [     ┃     ]     ┃     `     ┃     \     ┃
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-    //             ┃ █████████ ┃     |     ┃     {     ┃     }     ┃     ~     ┃   ┃     _     ┃     <     ┃     >     ┃     +     ┃  ! / MOU  ┃
+    //             ┃ █████████ ┃     |     ┃     {     ┃     }     ┃     ~     ┃   ┃     _     ┃     <     ┃     >     ┃     +     ┃  / / MOU  ┃
     //             ┗━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
     //                                     ┃ SPACE/NAV ┃           ┃           ┃   ┃           ┃ MAG SHIFT ┃
     //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┛
@@ -258,7 +263,7 @@ ZMK_CONDITIONAL_LAYER(num_layer, MOU SYM, FUN)
 
                     ___         &kp AT      &kp HASH    &kp DLLR    &kp PRCNT       &kp ASTRK   &kp LPAR    &kp RPAR   &kp MINUS    &kp EQUAL
                     ___         ___         ___         ___         &kp CARET       &kp AMPS    &kp LBKT    &kp RBKT   &kp GRAVE    &kp BSLH
-                    ___         &kp PIPE    &kp LBRC    &kp RBRC    &kp TILDE       &kp UNDER   &kp LT      &kp GT     &kp PLUS     &lt MOU EXCL
+                    ___         &kp PIPE    &kp LBRC    &kp RBRC    &kp TILDE       &kp UNDER   &kp LT      &kp GT     &kp PLUS     &lt MOU SLASH
                                             ___         ___         ___             ___         ___
                             >;
             };
