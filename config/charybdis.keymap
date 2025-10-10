@@ -110,9 +110,9 @@ ZMK_TRI_STATE(tabswap, bindings = <&kt_on LCTRL>, <&kp TAB>, <&kt_off LCTRL>; ig
                 bindings = <BINDING1>, <BINDING2>;)
 
 // Tap: space | Hold: nav layer.
-#define NAV_KEYS LT4 LT3 LT2 LT1 LT0 LB4 LB3 LB2 LB1 LB0 RT1 RT2 RT3 RM1 RM2 RM3 RB4
+#define NAV_KEYS LT4 LT3 LT2 LT1 LT0 LM4 LM3 LM2 LM1 LB4 LB3 LB2 LB1 LB0 RT1 RT2 RT3 RM1 RM2 RM3 RB4 RH1
 ZMK_HOLD_TAP(lt_spc, bindings = <&mo>, <&kp>; flavor = "hold-preferred";
-             tapping-term-ms = <240>; quick-tap-ms = <200>;
+             tapping-term-ms = <200>; quick-tap-ms = <200>;
              hold-trigger-key-positions = <NAV_KEYS>;)
 
 /* Keymap */
@@ -170,7 +170,7 @@ ZMK_CONDITIONAL_LAYER(num_layer, MOU SYM, FUN)
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
     //             ┃     A     ┃     R     ┃     S     ┃     T     ┃     G     ┃   ┃     M     ┃     N     ┃     E     ┃     I     ┃     O     ┃
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-    //             ┃     Z     ┃     X     ┃     C     ┃     D     ┃     V     ┃   ┃     K     ┃     H     ┃     ,     ┃     .     ┃  ! / MOU  ┃
+    //             ┃     Z     ┃     X     ┃     C     ┃     D     ┃     V     ┃   ┃     K     ┃     H     ┃     ,     ┃     .     ┃  / / MOU  ┃
     //             ┗━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
     //                                     ┃ SPACE/NAV ┃ MAGISHIFT ┃           ┃   ┃           ┃    SYM    ┃
     //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┛
@@ -241,20 +241,20 @@ ZMK_CONDITIONAL_LAYER(num_layer, MOU SYM, FUN)
     // ┃           3 - Symbols                 ┃
     // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
     //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
-    //             ┃           ┃     @     ┃     #     ┃     $     ┃     %     ┃   ┃     *     ┃     (     ┃     )     ┃     -     ┃     =     ┃
+    //             ┃     !     ┃     @     ┃     #     ┃     $     ┃     %     ┃   ┃     *     ┃     (     ┃     )     ┃     -     ┃     =     ┃
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
     //             ┃   SHIFT   ┃   CTRL    ┃    ALT    ┃    GUI    ┃     ^     ┃   ┃     &     ┃     [     ┃     ]     ┃     `     ┃     \     ┃
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-    //             ┃           ┃     |     ┃     <     ┃     >     ┃     ~     ┃   ┃     _     ┃     {     ┃     }     ┃     +     ┃  ! / MOU  ┃
+    //             ┃           ┃           ┃     <     ┃     >     ┃     |     ┃   ┃     ~     ┃     {     ┃     }     ┃     _     ┃  + / MOU  ┃
     //             ┗━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
     //                                     ┃ SPACE/NAV ┃ MAGISHIFT ┃           ┃   ┃           ┃ █████████ ┃
     //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┛
      bindings = <
     // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
 
-                    ___         &kp AT      &kp HASH    &kp DLLR    &kp PRCNT       &kp ASTRK   &kp LPAR    &kp RPAR   &kp MINUS    &kp EQUAL
+                    &kp EXCL    &kp AT      &kp HASH    &kp DLLR    &kp PRCNT       &kp ASTRK   &kp LPAR    &kp RPAR   &kp MINUS    &kp EQUAL
                     ___         ___         ___         ___         &kp CARET       &kp AMPS    &kp LBKT    &kp RBKT   &kp GRAVE    &kp BSLH
-                    ___         &kp PIPE    &kp LT      &kp GT      &kp TILDE       &kp UNDER   &kp LBRC    &kp RBRC   &kp PLUS     &lt MOU EXCL
+                    ___         ___         &kp LT      &kp GT      &kp PIPE        &kp TILDE   &kp LBRC    &kp RBRC   &kp UNDER    &lt MOU PLUS
                                             ___         ___         ___             ___         ___
                             >;
             };
