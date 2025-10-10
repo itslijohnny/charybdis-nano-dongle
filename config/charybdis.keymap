@@ -109,20 +109,11 @@ ZMK_TRI_STATE(tabswap, bindings = <&kt_on LCTRL>, <&kp TAB>, <&kt_off LCTRL>; ig
   ZMK_MOD_MORPH(NAME, mods = <(MOD_L##MOD | MOD_R##MOD)>;                      \
                 bindings = <BINDING1>, <BINDING2>;)
 
-// Tap: space | Shift + tap: dot -> space -> sticky shift | Hold: nav layer.
-ZMK_HOLD_TAP(lt_spc, bindings = <&mo>, <&spc_morph>; flavor = "balanced";
-             tapping-term-ms = <200>; quick-tap-ms = <200>;)
-SIMPLE_MORPH(spc_morph, SFT, &kp SPACE, &dot_spc)
-ZMK_MACRO(dot_spc, bindings = <&kp SPACE>; wait-ms = <0>;
-          tap-ms = <5>;)
-
-// Tap: excl | Shift + tap: qmark. | Hold: fun layer
-ZMK_HOLD_TAP(lt_excl, bindings = <&mo>, <&excl_morph>; flavor = "balanced";
-             tapping-term-ms = <200>; quick-tap-ms = <200>;)
-SIMPLE_MORPH(excl_morph, SFT, &kp EXCL, &kp QMARK)
-
-ZMK_HOLD_TAP(lt_undo, bindings = <&mo>, <&kp>; flavor = "balanced";
-             tapping-term-ms = <200>; quick-tap-ms = <200>;)
+// Tap: space | Hold: nav layer.
+#define NAV_KEYS LT4 LT3 LT2 LT1 LT0 LB4 LB3 LB2 LB1 LB0 RT1 RT2 RT3 RM1 RM2 RM3 RB4
+ZMK_HOLD_TAP(lt_spc, bindings = <&mo>, <&kp>; flavor = "hold-preferred";
+             tapping-term-ms = <240>; quick-tap-ms = <200>;
+             hold-trigger-key-positions = <NAV_KEYS>;)
 
 /* Keymap */
 
@@ -179,16 +170,16 @@ ZMK_CONDITIONAL_LAYER(num_layer, MOU SYM, FUN)
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
     //             ┃     A     ┃     R     ┃     S     ┃     T     ┃     G     ┃   ┃     M     ┃     N     ┃     E     ┃     I     ┃     O     ┃
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-    //             ┃  Z / SYM  ┃     X     ┃     C     ┃     D     ┃     V     ┃   ┃     K     ┃     H     ┃     ,     ┃     .     ┃  ! / MOU  ┃
+    //             ┃     Z     ┃     X     ┃     C     ┃     D     ┃     V     ┃   ┃     K     ┃     H     ┃     ,     ┃     .     ┃  ! / MOU  ┃
     //             ┗━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-    //                                     ┃ SPACE/NAV ┃           ┃           ┃   ┃           ┃ MAG SHIFT ┃
+    //                                     ┃ SPACE/NAV ┃ MAGISHIFT ┃           ┃   ┃           ┃    SYM    ┃
     //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┛
      bindings = <
     // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
                     &kp Q       &kp W       &kp F       &kp P       &kp B           &kp J       &kp L       &kp U       &kp Y       &kp SQT
                     &hml LSHIFT A &hml LCTRL R &hml LALT S &hml LGUI T &kp G        &kp M       &hmr LGUI N &hmr LALT E &hmr LCTRL I &hmr RSHIFT O
-                    &lt SYM Z   &kp X       &kp C       &kp D       &kp V           &kp K       &kp H       &comma_morph &dot_morph &lt_excl MOU 0
-                                            &lt_spc NAV 0 XXX       XXX             XXX         MAGIC_SHIFT
+                    &kp Z       &kp X       &kp C       &kp D       &kp V           &kp K       &kp H       &comma_morph &dot_morph &lt MOU FSLH
+                                            &lt_spc NAV SPACE MAGIC_SHIFT XXX       XXX         XXX
                             >;
             };
 
@@ -206,7 +197,7 @@ ZMK_CONDITIONAL_LAYER(num_layer, MOU SYM, FUN)
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
     //             ┃           ┃           ┃           ┃           ┃           ┃   ┃           ┃    MB1    ┃ MB2/SCROL ┃           ┃ █████████ ┃
     //             ┗━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-    //                                     ┃ SPACE/NAV ┃           ┃           ┃   ┃           ┃ MAG SHIFT ┃
+    //                                     ┃ SPACE/NAV ┃ MAGISHIFT ┃           ┃   ┃           ┃    SYM    ┃
     //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┛
      bindings = <
     // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
@@ -229,15 +220,15 @@ ZMK_CONDITIONAL_LAYER(num_layer, MOU SYM, FUN)
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
     //             ┃   SHIFT   ┃   CTRL    ┃    ALT    ┃    GUI    ┃           ┃   ┃   PG_DN   ┃   LEFT    ┃   DOWN    ┃   RIGHT   ┃           ┃
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-    //             ┃           ┃           ┃           ┃           ┃           ┃   ┃           ┃           ┃           ┃           ┃   ENTER   ┃
+    //             ┃   UNDO    ┃    CUT    ┃   COPY    ┃   REDO    ┃   PASTE   ┃   ┃           ┃           ┃           ┃           ┃   ENTER   ┃
     //             ┗━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-    //                                     ┃ █████████ ┃           ┃           ┃   ┃           ┃ MAG SHIFT ┃
+    //                                     ┃ █████████ ┃ MAGISHIFT ┃           ┃   ┃           ┃    SYM    ┃
     //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┛
      bindings = <
     // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
                     &kp ESC     &kp TAB     &appswap    &winswap    &tabswap        &kp PG_UP   &kp BSPC    &kp UP      &kp DEL     ___
                     &sk LSHIFT  &sk LCTRL   &sk LALT    &sk LGUI    ___             &kp PG_DN   &kp LEFT    &kp DOWN    &kp RIGHT   ___
-                    &lt_undo SYM LG(Z) cut  copy        redo        paste           ___         ___         ___         ___         &kp ENTER
+                    undo        cut         copy        redo        paste           ___         ___         ___         ___         &kp ENTER
                                             ___         ___         ___             ___         ___
                             >;
             };
@@ -254,16 +245,16 @@ ZMK_CONDITIONAL_LAYER(num_layer, MOU SYM, FUN)
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
     //             ┃   SHIFT   ┃   CTRL    ┃    ALT    ┃    GUI    ┃     ^     ┃   ┃     &     ┃     [     ┃     ]     ┃     `     ┃     \     ┃
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-    //             ┃ █████████ ┃     |     ┃     {     ┃     }     ┃     ~     ┃   ┃     _     ┃     <     ┃     >     ┃     +     ┃  / / MOU  ┃
+    //             ┃ █████████ ┃     |     ┃     <     ┃     >     ┃     ~     ┃   ┃     _     ┃     {     ┃     }     ┃     +     ┃  ! / MOU  ┃
     //             ┗━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-    //                                     ┃ SPACE/NAV ┃           ┃           ┃   ┃           ┃ MAG SHIFT ┃
+    //                                     ┃ SPACE/NAV ┃ MAGISHIFT ┃           ┃   ┃           ┃    SYM    ┃
     //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┛
      bindings = <
     // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
 
                     ___         &kp AT      &kp HASH    &kp DLLR    &kp PRCNT       &kp ASTRK   &kp LPAR    &kp RPAR   &kp MINUS    &kp EQUAL
                     ___         ___         ___         ___         &kp CARET       &kp AMPS    &kp LBKT    &kp RBKT   &kp GRAVE    &kp BSLH
-                    ___         &kp PIPE    &kp LBRC    &kp RBRC    &kp TILDE       &kp UNDER   &kp LT      &kp GT     &kp PLUS     &lt MOU SLASH
+                    ___         &kp PIPE    &kp LT      &kp GT      &kp TILDE       &kp UNDER   &kp LBRC    &kp RBRC   &kp PLUS     &lt MOU EXCL
                                             ___         ___         ___             ___         ___
                             >;
             };
@@ -279,18 +270,18 @@ ZMK_CONDITIONAL_LAYER(num_layer, MOU SYM, FUN)
     //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
     //             ┃           ┃    F7     ┃    F8     ┃    F9     ┃    F12    ┃   ┃           ┃     7     ┃     8     ┃     9     ┃           ┃
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-    //             ┃           ┃    F4     ┃    F5     ┃    F6     ┃    F11    ┃   ┃           ┃     4     ┃     5     ┃     6     ┃           ┃
+    //             ┃           ┃    F4     ┃    F5     ┃    F6     ┃    F11    ┃   ┃           ┃     4     ┃     5     ┃     6     ┃     0     ┃
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-    //             ┃ █████████ ┃    F1     ┃    F2     ┃    F3     ┃    F10    ┃   ┃           ┃     1     ┃     2     ┃     3     ┃           ┃
+    //             ┃           ┃    F1     ┃    F2     ┃    F3     ┃    F10    ┃   ┃           ┃     1     ┃     2     ┃     3     ┃           ┃
     //             ┗━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-    //                                     ┃ █████████ ┃           ┃           ┃   ┃           ┃     0     ┃
+    //                                     ┃ █████████ ┃ MAGISHIFT ┃           ┃   ┃           ┃ █████████ ┃
     //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┛
      bindings = <
     // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
                     XXX         &kp F7      &kp F8      &kp F9      &kp F12         ___         &kp N7      &kp N8      &kp N9      ___
-                    &kp LSHIFT  &hml LCTRL F4 &hml LALT F5 &hml LGUI F6 &kp F11     ___         &hmr LGUI N4 &hmr LALT N5 &hmr LCTRL N6 &kp RSHIFT
+                    &kp LSHIFT  &hml LCTRL F4 &hml LALT F5 &hml LGUI F6 &kp F11     ___         &hmr LGUI N4 &hmr LALT N5 &hmr LCTRL N6 &hmr RSHIFT N0
                     XXX         &kp F1      &kp F2      &kp F3      &kp F10         ___         &kp N1      &kp N2      &kp N3      ___
-                                            ___         ___         ___             ___         &kp N0
+                                            ___         ___         ___             ___         ___
                             >;
             };
 
@@ -306,9 +297,9 @@ ZMK_CONDITIONAL_LAYER(num_layer, MOU SYM, FUN)
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
     //             ┃    GUI    ┃    ALT    ┃   SHIFT   ┃    CTRL   ┃  VOL_DN   ┃   ┃           ┃           ┃           ┃           ┃           ┃
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-    //             ┃ █████████ ┃ USB | BLE ┃  BT PRV   ┃  BT NXT   ┃  BT CLR   ┃   ┃           ┃           ┃           ┃           ┃ █████████ ┃
+    //             ┃           ┃ USB | BLE ┃  BT PRV   ┃  BT NXT   ┃  BT CLR   ┃   ┃           ┃           ┃           ┃           ┃ █████████ ┃
     //             ┗━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-    //                                     ┃ SPACE/NAV ┃           ┃           ┃   ┃           ┃ MAG SHIFT ┃
+    //                                     ┃ SPACE/NAV ┃ MAGISHIFT ┃           ┃   ┃           ┃ █████████ ┃
     //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┛
      bindings = <
     // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
