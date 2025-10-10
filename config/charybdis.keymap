@@ -110,7 +110,7 @@ ZMK_TRI_STATE(tabswap, bindings = <&kt_on LCTRL>, <&kp TAB>, <&kt_off LCTRL>; ig
                 bindings = <BINDING1>, <BINDING2>;)
 
 // Tap: space | Hold: nav layer.
-#define NAV_KEYS LT4 LT3 LT2 LT1 LT0 LB4 LB3 LB2 LB1 LB0 RT1 RT2 RT3 RM1 RM2 RM3 RB4 RH1
+#define NAV_KEYS LT4 LT3 LT2 LT1 LM4 LM3 LM2 LM1 LT0 LB4 LB3 LB2 LB1 LB0 RT1 RT2 RT3 RM1 RM2 RM3 RB4 RH1
 ZMK_HOLD_TAP(lt_spc, bindings = <&mo>, <&kp>; flavor = "balanced";
              tapping-term-ms = <200>; quick-tap-ms = <200>;
              hold-trigger-key-positions = <NAV_KEYS>;)
