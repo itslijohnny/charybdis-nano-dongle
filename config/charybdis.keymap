@@ -121,12 +121,12 @@ ZMK_HOLD_TAP(lt_spc,
 // Tap: Dot or Comma | Hold: < or >.
 #define COMMA_LT &hold_once LT COMMA
 #define DOT_GT &hold_once GT DOT
-ZMK_MACRO_ONE_PARAM(macro_once, bindings = <&macro_param_1to1>, <&macro_tap &kp MACRO_PLACEHOLDER>;)
-ZMK_BEHAVIOR(hold_once, hold_tap,                                               \
+ZMK_MACRO_ONE_PARAM(macro_honce, bindings = <&macro_param_1to1>, <&macro_tap &kp MACRO_PLACEHOLDER>;)
+ZMK_BEHAVIOR(hold_once, hold_tap,                                              \
         flavor = "tap-preferred";                                              \
         tapping-term-ms = <135>;                                               \
         quick-tap-ms = <0>;                                                    \
-        bindings = <&hold_once>, <&kp>;)
+        bindings = <&macro_honce>, <&kp>;)
 
 /* Keymap */
 
