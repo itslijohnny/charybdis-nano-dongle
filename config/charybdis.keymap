@@ -120,14 +120,15 @@ ZMK_HOLD_TAP(lt_spc,
 
 /* Keymap */
 
-// Auto-shift
-#define AS(keycode) &as LS(keycode) keycode     // Autoshift Macro
-ZMK_BEHAVIOR(as, hold_tap,                                                     \
-        flavor = "tap-preferred";                                              \
-        tapping-term-ms = <135>;                                               \
-        quick-tap-ms = <0>;                                                    \
-        bindings = <&kp>, <&kp>;                                               \
-)
+// Tap: h | Double tap: <.
+ZMK_BEHAVIOR(comma_lt, tap_dance,                                              \
+        tapping-term-ms = <150>;                                               \
+        bindings = <&kp COMMA>, <&kp LT>;)
+
+// Tap: , | Double tap: >.
+ZMK_BEHAVIOR(dot_gt, tap_dance,                                                \
+        tapping-term-ms = <150>;                                               \
+        bindings = <&kp DOT>, <&kp GT>;)
 
 // Enable FUN layer if NAV and NUM are active
 ZMK_CONDITIONAL_LAYER(fun_layer, NAV SYM, NUM)
@@ -181,7 +182,7 @@ ZMK_CONDITIONAL_LAYER(num_layer, MOU SYM, FUN)
     // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
                     &kp Q       &kp W       &kp F       &kp P       &kp B           &kp J       &kp L       &kp U       &kp Y       &kp SQT
                     &hml LSHIFT A &hml LCTRL R &hml LALT S &hml LGUI T &kp G        &kp M       &hmr LGUI N &hmr LALT E &hmr LCTRL I &hmr RSHIFT O
-                    &kp Z       &kp X       &kp C       &kp D       &kp V           &kp K       &kp H       AS(COMMA)   AS(DOT)     &lt MOU FSLH
+                    &kp Z       &kp X       &kp C       &kp D       &kp V           &kp K       &kp H       &comma_lt   &dot_gt     &lt MOU FSLH
                                             &lt_spc NAV SPACE MAGIC_SHIFT XXX       XXX         &mo SYM
                             >;
             };
