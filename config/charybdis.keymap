@@ -110,9 +110,12 @@ ZMK_TRI_STATE(tabswap, bindings = <&kt_on LCTRL>, <&kp TAB>, <&kt_off LCTRL>; ig
                 bindings = <BINDING1>, <BINDING2>;)
 
 // Tap: space | Hold: nav layer.
-ZMK_HOLD_TAP(lt_spc, bindings = <&mo>, <&kp>; flavor = "hold-preferred";
-             tapping-term-ms = <200>; quick-tap-ms = <150>;
-             require-prior-idle-ms = <150>;
+ZMK_HOLD_TAP(lt_spc,                                                           \
+             bindings = <&mo>, <&kp>;                                          \
+             flavor = "hold-preferred";                                        \
+             tapping-term-ms = <200>;                                          \
+             quick-tap-ms = <150>;                                             \
+             require-prior-idle-ms = <150>;                                    \
              hold-trigger-key-positions = <NAV_KEYS>;)
 
 /* Keymap */
