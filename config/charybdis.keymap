@@ -122,12 +122,12 @@ ZMK_HOLD_TAP(lt_spc,
 
 // Tap: h | Double tap: <.
 ZMK_BEHAVIOR(comma_lt, tap_dance,                                              \
-        tapping-term-ms = <150>;                                               \
+        tapping-term-ms = <QUICK_TAP_MS>;                                               \
         bindings = <&kp COMMA>, <&kp LT>;)
 
 // Tap: , | Double tap: >.
 ZMK_BEHAVIOR(dot_gt, tap_dance,                                                \
-        tapping-term-ms = <150>;                                               \
+        tapping-term-ms = <QUICK_TAP_MS>;                                               \
         bindings = <&kp DOT>, <&kp GT>;)
 
 // Enable FUN layer if NAV and NUM are active
