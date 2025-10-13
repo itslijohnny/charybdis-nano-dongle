@@ -110,7 +110,7 @@ ZMK_TRI_STATE(tabswap, bindings = <&kt_on LCTRL>, <&kp TAB>, <&kt_off LCTRL>; ig
                 bindings = <BINDING1>, <BINDING2>;)
 
 // Tap: space | Hold: nav layer.
-#define NAV_KEYS LT4 LT3 LT2 LT1 LM4 LM3 LM2 LM1 LT0 LB4 LB3 LB2 LB1 LB0 RT1 RT2 RT3 RM1 RM2 RM3 RB4 RH1
+#define NAV_KEYS LT4 LT3 LT2 LT1 LM4 LM3 LM2 LM1 LB4 LB3 LB2 LB1 LB0 RT1 RT2 RT3 RM1 RM2 RM3 RB4 RH1
 ZMK_HOLD_TAP(lt_spc,
         bindings = <&mo>, <&kp>;                                               \
         flavor = "balanced";  tapping-term-ms = <200>;                         \
@@ -118,17 +118,17 @@ ZMK_HOLD_TAP(lt_spc,
         hold-trigger-on-release;                                               \
         quick-tap-ms = <QUICK_TAP_MS>;)
 
+// Tap: Dot or Comma | Hold: < or >.
+#define COMMA_LT &hold_once LT COMMA
+#define DOT_GT &hold_once GT DOT
+ZMK_BEHAVIOR(macro_once, bindings = <&macro_param_1to1>, <&macro_tap &kp MACRO_PLACEHOLDER>; tap-ms = <5>;)
+ZMK_BEHAVIOR(hold_once, hold_tap,                                               \
+        flavor = "tap-preferred";                                              \
+        tapping-term-ms = <135>;                                               \
+        quick-tap-ms = <0>;                                                    \
+        bindings = <&hold_once>, <&kp>;)
+
 /* Keymap */
-
-// Tap: h | Double tap: <.
-ZMK_BEHAVIOR(comma_lt, tap_dance,                                              \
-        tapping-term-ms = <QUICK_TAP_MS>;                                               \
-        bindings = <&kp COMMA>, <&kp LT>;)
-
-// Tap: , | Double tap: >.
-ZMK_BEHAVIOR(dot_gt, tap_dance,                                                \
-        tapping-term-ms = <QUICK_TAP_MS>;                                               \
-        bindings = <&kp DOT>, <&kp GT>;)
 
 // Enable FUN layer if NAV and NUM are active
 ZMK_CONDITIONAL_LAYER(fun_layer, NAV SYM, NUM)
@@ -182,7 +182,7 @@ ZMK_CONDITIONAL_LAYER(num_layer, MOU SYM, FUN)
     // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
                     &kp Q       &kp W       &kp F       &kp P       &kp B           &kp J       &kp L       &kp U       &kp Y       &kp SQT
                     &hml LSHIFT A &hml LCTRL R &hml LALT S &hml LGUI T &kp G        &kp M       &hmr LGUI N &hmr LALT E &hmr LCTRL I &hmr RSHIFT O
-                    &kp Z       &kp X       &kp C       &kp D       &kp V           &kp K       &kp H       &comma_lt   &dot_gt     &lt MOU FSLH
+                    &kp Z       &kp X       &kp C       &kp D       &kp V           &kp K       &kp H       COMMA_LT    DOT_GT      &lt MOU FSLH
                                             &lt_spc NAV SPACE MAGIC_SHIFT XXX       XXX         &mo SYM
                             >;
             };
