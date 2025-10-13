@@ -121,7 +121,7 @@ ZMK_HOLD_TAP(lt_spc,
 // Tap: Dot or Comma | Hold: < or >.
 #define COMMA_LT &hold_once LT COMMA
 #define DOT_GT &hold_once GT DOT
-ZMK_BEHAVIOR(macro_once, bindings = <&macro_param_1to1>, <&macro_tap &kp MACRO_PLACEHOLDER>; tap-ms = <5>;)
+ZMK_MACRO_ONE_PARAM(macro_once, bindings = <&macro_param_1to1>, <&macro_tap &kp MACRO_PLACEHOLDER>; tap-ms = <5>;)
 ZMK_BEHAVIOR(hold_once, hold_tap,                                               \
         flavor = "tap-preferred";                                              \
         tapping-term-ms = <135>;                                               \
