@@ -114,18 +114,21 @@ ZMK_HOLD_TAP(lt_spc,                                                           \
              bindings = <&mo>, <&kp>;                                          \
              flavor = "hold-preferred";                                        \
              tapping-term-ms = <200>;                                          \
-             quick-tap-ms = <150>;                                             \
-             require-prior-idle-ms = <125>;)
+             quick-tap-ms = <QUICK_TAP_MS>;)
 
 /* Keymap */
 
-// Tap: comma | Shift + tap: semicolon | Ctrl + shift + tap: <.
-SIMPLE_MORPH(comma_morph, SFT, &kp COMMA, &comma_inner_morph)
-SIMPLE_MORPH(comma_inner_morph, CTL, &kp SEMICOLON, &kp LESS_THAN)
+// Tap: h | Double tap: <.
+ZMK_BEHAVIOR(h_lt, tap_dance,
+    tapping-term-ms = <QUICK_TAP_MS>;
+    bindings = <&kp h>, <&kp LT>;
+)
 
-// Tap: dot | Shift + tap: colon | Ctrl + shift + tap: >.
-SIMPLE_MORPH(dot_morph, SFT, &kp DOT, &dot_inner_morph)
-SIMPLE_MORPH(dot_inner_morph, CTL, &kp COLON, &kp GREATER_THAN)
+// Tap: , | Double tap: >.
+ZMK_BEHAVIOR(comma_gt, tap_dance,
+    tapping-term-ms = <QUICK_TAP_MS>;
+    bindings = <&kp COMMA>, <&kp GT>;
+)
 
 // Enable FUN layer if NAV and NUM are active
 ZMK_CONDITIONAL_LAYER(fun_layer, NAV SYM, NUM)
@@ -140,7 +143,6 @@ ZMK_CONDITIONAL_LAYER(num_layer, MOU SYM, FUN)
             layers = <NAV>;
             input-processors = <&zip_xy_scaler 1 20>, <&zip_xy_to_scroll_mapper>, <&zip_scroll_transform (INPUT_TRANSFORM_Y_INVERT)>;
         };
-
     };
 
     behaviors {
@@ -180,7 +182,7 @@ ZMK_CONDITIONAL_LAYER(num_layer, MOU SYM, FUN)
     // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
                     &kp Q       &kp W       &kp F       &kp P       &kp B           &kp J       &kp L       &kp U       &kp Y       &kp SQT
                     &hml LSHIFT A &hml LCTRL R &hml LALT S &hml LGUI T &kp G        &kp M       &hmr LGUI N &hmr LALT E &hmr LCTRL I &hmr RSHIFT O
-                    &kp Z       &kp X       &kp C       &kp D       &kp V           &kp K       &kp H       &kp COMMA   &kp DOT     &lt MOU FSLH
+                    &kp Z       &kp X       &kp C       &kp D       &kp V           &kp K       &h_lt       &comma_gt   &kp DOT     &lt MOU FSLH
                                             &lt_spc NAV SPACE MAGIC_SHIFT XXX       XXX         &mo SYM
                             >;
             };
