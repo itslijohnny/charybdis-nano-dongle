@@ -119,16 +119,14 @@ ZMK_HOLD_TAP(lt_spc,                                                           \
 /* Keymap */
 
 // Tap: h | Double tap: <.
-ZMK_BEHAVIOR(h_lt, tap_dance,
-    tapping-term-ms = <QUICK_TAP_MS>;
-    bindings = <&kp h>, <&kp LT>;
-)
+ZMK_BEHAVIOR(h_lt, tap_dance,                                                  \
+            tapping-term-ms = <QUICK_TAP_MS>;                                  \
+            bindings = <&kp H>, <&kp LT>;)
 
 // Tap: , | Double tap: >.
-ZMK_BEHAVIOR(comma_gt, tap_dance,
-    tapping-term-ms = <QUICK_TAP_MS>;
-    bindings = <&kp COMMA>, <&kp GT>;
-)
+ZMK_BEHAVIOR(comma_gt, tap_dance,                                              \
+            tapping-term-ms = <QUICK_TAP_MS>;                                  \
+            bindings = <&kp COMMA>, <&kp GT>;)
 
 // Enable FUN layer if NAV and NUM are active
 ZMK_CONDITIONAL_LAYER(fun_layer, NAV SYM, NUM)
