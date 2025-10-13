@@ -115,7 +115,7 @@ ZMK_HOLD_TAP(lt_spc,                                                           \
              flavor = "hold-preferred";                                        \
              tapping-term-ms = <200>;                                          \
              quick-tap-ms = <150>;                                             \
-             require-prior-idle-ms = <150>;)
+             require-prior-idle-ms = <125>;)
 
 /* Keymap */
 
@@ -180,7 +180,7 @@ ZMK_CONDITIONAL_LAYER(num_layer, MOU SYM, FUN)
     // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
                     &kp Q       &kp W       &kp F       &kp P       &kp B           &kp J       &kp L       &kp U       &kp Y       &kp SQT
                     &hml LSHIFT A &hml LCTRL R &hml LALT S &hml LGUI T &kp G        &kp M       &hmr LGUI N &hmr LALT E &hmr LCTRL I &hmr RSHIFT O
-                    &kp Z       &kp X       &kp C       &kp D       &kp V           &kp K       &kp H       &comma_morph &dot_morph &lt MOU FSLH
+                    &kp Z       &kp X       &kp C       &kp D       &kp V           &kp K       &kp H       &kp COMMA   &kp DOT     &lt MOU FSLH
                                             &lt_spc NAV SPACE MAGIC_SHIFT XXX       XXX         &mo SYM
                             >;
             };
@@ -247,7 +247,7 @@ ZMK_CONDITIONAL_LAYER(num_layer, MOU SYM, FUN)
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
     //             ┃   SHIFT   ┃   CTRL    ┃    ALT    ┃    GUI    ┃     ^     ┃   ┃     &     ┃     [     ┃     ]     ┃     `     ┃     \     ┃
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-    //             ┃           ┃           ┃     <     ┃     >     ┃     |     ┃   ┃     ~     ┃     {     ┃     }     ┃     _     ┃  + / MOU  ┃
+    //             ┃     +     ┃     _     ┃     <     ┃     >     ┃     |     ┃   ┃     ~     ┃     {     ┃     }     ┃     :     ┃  ; / MOU  ┃
     //             ┗━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
     //                                     ┃ SPACE/NAV ┃ MAGISHIFT ┃           ┃   ┃           ┃ █████████ ┃
     //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┛
@@ -256,7 +256,7 @@ ZMK_CONDITIONAL_LAYER(num_layer, MOU SYM, FUN)
 
                     &kp EXCL    &kp AT      &kp HASH    &kp DLLR    &kp PRCNT       &kp ASTRK   &kp LPAR    &kp RPAR   &kp MINUS    &kp EQUAL
                     ___         ___         ___         ___         &kp CARET       &kp AMPS    &kp LBKT    &kp RBKT   &kp GRAVE    &kp BSLH
-                    ___         ___         &kp LT      &kp GT      &kp PIPE        &kp TILDE   &kp LBRC    &kp RBRC   &kp UNDER    &lt MOU PLUS
+                    &kp PLUS    &kp UNDER   &kp LT      &kp GT      &kp PIPE        &kp TILDE   &kp LBRC    &kp RBRC   &kp COLON    &lt MOU SEMICOLON
                                             ___         ___         ___             ___         ___
                             >;
             };
