@@ -258,7 +258,7 @@ ZMK_CONDITIONAL_LAYER(num_layer, MOU SYM, FUN)
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
     //             ┃   SHIFT   ┃   CTRL    ┃    ALT    ┃    GUI    ┃     ^     ┃   ┃     &     ┃     [     ┃     ]     ┃     `     ┃     \     ┃
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-    //             ┃ █████████ ┃     ~     ┃     |     ┃     +     ┃     _     ┃   ┃     !     ┃     {     ┃     }     ┃     :     ┃     ;     ┃
+    //             ┃ █████████ ┃     ~     ┃     |     ┃     +     ┃     _     ┃   ┃     /     ┃     {     ┃     }     ┃     :     ┃     ;     ┃
     //             ┗━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┛
     //                                     ┃ SPACE/NAV ┃           ┃           ┃   ┃           ┃ MAGISHIFT ┃
     //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┛
@@ -267,7 +267,7 @@ ZMK_CONDITIONAL_LAYER(num_layer, MOU SYM, FUN)
 
                     &kp EXCL    &kp AT      &kp HASH    &kp DLLR    &kp PRCNT       &kp ASTRK   &kp LPAR    &kp RPAR   &kp MINUS    &kp EQUAL
                     ___         ___         ___         ___         &kp CARET       &kp AMPS    &kp LBKT    &kp RBKT   &kp GRAVE    &kp BSLH
-                    &kp PLUS    &kp UNDER   &kp LT      &kp GT      &kp PIPE        &kp TILDE   &kp LBRC    &kp RBRC   &kp COLON    &lt MOU SEMI
+                    &kp PLUS    &kp UNDER   &kp LT      &kp GT      &kp PIPE        &kp FLSH   &kp LBRC    &kp RBRC   &kp COLON    &lt MOU SEMI
                                             ___         ___         ___             ___         ___
                             >;
             };
