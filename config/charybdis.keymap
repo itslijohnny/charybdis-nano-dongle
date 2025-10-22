@@ -116,7 +116,7 @@ ZMK_TRI_STATE(tabswap, bindings = <&kt_on LCTRL>, <&kp TAB>, <&kt_off LCTRL>; ig
 #define LT_SPACE &lt_spc SYM SPACE
 ZMK_HOLD_TAP(lt_spc,
         bindings = <&mo>, <&kp>;                                              \
-        flavor = "balanced";                                                  \
+        flavor = "hold-preferred";                                            \
         tapping-term-ms = <200>;                                              \
         hold-trigger-on-release; hold-trigger-key-positions = <SYM_KEYS>;     \
         quick-tap-ms = <200>;)
