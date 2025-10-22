@@ -224,9 +224,9 @@ ZMK_CONDITIONAL_LAYER(num_layer, MOU SYM, FUN)
     // ┃         2 - Navigation                ┃
     // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
     //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
-    //             ┃    ESC    ┃    TAB    ┃  NXT_APP  ┃  NXT_WIN  ┃  NXT_TAB  ┃   ┃   PG_UP   ┃   BSPC    ┃    UP     ┃    DEL    ┃           ┃
+    //             ┃    ESC    ┃    TAB    ┃  NXT_APP  ┃  NXT_WIN  ┃  NXT_TAB  ┃   ┃ SCROLL UP ┃   BSPC    ┃    UP     ┃    DEL    ┃           ┃
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-    //             ┃   SHIFT   ┃   CTRL    ┃    ALT    ┃    GUI    ┃           ┃   ┃   PG_DN   ┃   LEFT    ┃   DOWN    ┃   RIGHT   ┃           ┃
+    //             ┃   SHIFT   ┃   CTRL    ┃    ALT    ┃    GUI    ┃           ┃   ┃ SCROLL DN ┃   LEFT    ┃   DOWN    ┃   RIGHT   ┃           ┃
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
     //             ┃    UNDO   ┃    CUT    ┃   COPY    ┃   REDO    ┃   PASTE   ┃   ┃           ┃           ┃           ┃           ┃   ENTER   ┃
     //             ┗━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
@@ -234,8 +234,8 @@ ZMK_CONDITIONAL_LAYER(num_layer, MOU SYM, FUN)
     //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┛
      bindings = <
     // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
-                    &kp ESC     &kp TAB     &appswap    &winswap    &tabswap        &kp PG_UP   &kp BSPC    &kp UP      &kp DEL     ___
-                    &sk LSHIFT  &sk LCTRL   &sk LALT    &sk LGUI    ___             &kp PG_DN   &kp LEFT    &kp DOWN    &kp RIGHT   ___
+                    &kp ESC     &kp TAB     &appswap    &winswap    &tabswap        &kp SCRL_UP &kp BSPC    &kp UP      &kp DEL     ___
+                    &sk LSHIFT  &sk LCTRL   &sk LALT    &sk LGUI    ___             &kp SCRL_DOWN &kp LEFT    &kp DOWN    &kp RIGHT   ___
                     undo        cut         copy        redo        paste           ___         ___         ___         ___         &kp ENTER
                                             ___         ___         ___             ___         ___
                             >;
