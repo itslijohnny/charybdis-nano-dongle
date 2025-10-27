@@ -233,14 +233,14 @@ ZMK_CONDITIONAL_LAYER(num_layer, MOU NUM, FUN)
     //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
     //             ┃    UNDO   ┃    CUT    ┃   COPY    ┃   REDO    ┃   PASTE   ┃   ┃           ┃           ┃           ┃           ┃   ENTER   ┃
     //             ┗━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-    //                                     ┃ █████████ ┃ MAGISHIFT ┃           ┃   ┃           ┃    SYM    ┃
+    //                                     ┃ █████████ ┃ MAGISHIFT ┃           ┃   ┃           ┃    NUM    ┃
     //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┛
      bindings = <
     // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
                     &kp ESC     &kp TAB     &appswap    &winswap    &tabswap        &msc SCRL_UP &kp BSPC   &kp UP      &kp DEL     ___
                     &sk LSHIFT  &sk LCTRL   &sk LALT    &sk LGUI    ___             &msc SCRL_DOWN &kp LEFT &kp DOWN    &kp RIGHT   ___
                     undo        cut         copy        redo        paste           ___         ___         ___         ___         &kp ENTER
-                                            ___         ___         ___             ___         &mo SYM
+                                            ___         ___         ___             ___         &mo NUM
                             >;
             };
 
