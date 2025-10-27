@@ -112,7 +112,7 @@ ZMK_TRI_STATE(tabswap, bindings = <&kt_on LCTRL>, <&kp TAB>, <&kt_off LCTRL>; ig
                 bindings = <BINDING1>, <BINDING2>;)
 
 // Tap: space | Hold: num layer.
-#define NUM_KEYS LT3 LT2 LT1 LT0 LM3 LM2 LM1 LM0 LB3 LB2 LB1 LB0 LH2 RT1 RT2 RT3 RM1 RM2 RM3 RM4 RB0 RB1 RB2 RB3 RB4
+#define NUM_KEYS LH2 RT1 RT2 RT3 RM1 RM2 RM3 RM4 RB0 RB1 RB2 RB3 RB4
 #define LT_SPACE &lt_spc NUM SPACE
 ZMK_HOLD_TAP(lt_spc,
         bindings = <&mo>, <&kp>;                                               \
