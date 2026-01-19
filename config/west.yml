@@ -1,4 +1,7 @@
 manifest:
+  defaults:
+    revision: v0.3
+
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
@@ -11,7 +14,6 @@ manifest:
   projects:
     - name: zmk
       remote: zmkfirmware
-      revision: v0.3
       import: app/west.yml
 
     - name: zmk-tri-state
@@ -27,9 +29,6 @@ manifest:
       remote: urob
       revision: main
 
-    - name: zmk-pmw3610-driver
-      remote: badjeff
-      revision: main
     - name: zmk-dongle-display
       remote: englmaxi
       revision: main
