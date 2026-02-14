@@ -1,5 +1,0 @@
-&trackball {
-    motion-gpios = <&gpio0 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-    zephyr,axis-x = <0x00>;
-    zephyr,axis-y = <0x01>;
-};
