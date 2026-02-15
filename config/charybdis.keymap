@@ -507,8 +507,8 @@
                 bindings = <
                     &trans  &kp N7              &kp N8        &kp N9         &trans      &trans  &trans  &trans  &trans  &trans
                     &trans  &hml LALT NUMBER_4  &hml LGUI N5  &hml LSHFT N6  &kp N0      &trans  &trans  &trans  &trans  &trans
-                    &trans  &kp N1              &kp N2        &kp N3         &kp PERIOD  &trans  &trans  &trans  &trans  &trans CANCEL
-                                                &trans        &trans         &trans      &trans
+                    &trans  &kp N1              &kp N2        &kp N3         &kp PERIOD  &trans  &trans  &trans  &trans  &trans 
+                                                &trans        &trans        &trans         &trans      &trans
                 >;
             };
 
