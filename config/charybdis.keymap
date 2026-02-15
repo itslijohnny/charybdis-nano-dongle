@@ -466,16 +466,6 @@
         };
     };
 
-    macros {
-        mac_save: mac_save {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&none>, <&macro_press>;
-
-            label = "MAC_SAVE";
-        };
-    };
-
     keymap {
                 compatible = "zmk,keymap";
 
