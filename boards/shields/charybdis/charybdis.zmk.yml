@@ -11,3 +11,5 @@ siblings:
   - charybdis_dongle
   - charybdis_left
   - charybdis_right
+  - ergodox_left
+  - ergodox_right

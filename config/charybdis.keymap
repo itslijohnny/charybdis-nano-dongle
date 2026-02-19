@@ -1,10 +1,24 @@
 /*                KEY POSITIONS
+  Charybdis (positions 0-34):
   ╭─────────────────────╮ ╭─────────────────────╮
   │ LT4 LT3 LT2 LT1 LT0 │ │ RT0 RT1 RT2 RT3 RT4 │
   │ LM4 LM3 LM2 LM1 LM0 │ │ RM0 RM1 RM2 RM3 RM4 │
   │ LB4 LB3 LB2 LB1 LB0 │ │ RB0 RB1 RB2 RB3 RB4 │
   ╰───────╮ LH2 LH1 LH0 │ │ RH0 RH1 ╭───────────╯
-          ╰─────────────╯ ╰─────────╯            */
+          ╰─────────────╯ ╰─────────╯
+
+  Ergodox (positions 35-110): 76 keys, 38 per side
+  ╭───────────────────────────╮ ╭───────────────────────────╮
+  │ 35  36  37  38  39  40  41  │ │ 42  43  44  45  46  47  48  │  Row 0: number (7+7)
+  │ 49  50  51  52  53  54  55  │ │ 56  57  58  59  60  61  62  │  Row 1: top alpha (7+7)
+  │ 63  64  65  66  67  68      │ │     69  70  71  72  73  74  │  Row 2: home (6+6)
+  │ 75  76  77  78  79  80  81  │ │ 82  83  84  85  86  87  88  │  Row 3: bottom alpha (7+7)
+  │ 89  90  91  92  93          │ │         94  95  96  97  98  │  Row 4: bottom mods (5+5)
+  │                     99 100  │ │ 101 102                     │  Thumb top (2+2)
+  │                 103 104 105 │ │ 106 107 108                 │  Thumb mid (3+3)
+  │                         109 │ │ 110                         │  Thumb bot (1+1)
+  ╰─────────────────────────────╯ ╰─────────────────────────────╯
+*/
 #include <behaviors.dtsi>
 
 #include <dt-bindings/zmk/keys.h>
@@ -470,6 +484,15 @@
                     &hml LCTRL A  &hml LALT R  &hml LGUI S    &hmsl LEFT_SHIFT T  &kp G         &kp M         &hmsr RIGHT_SHIFT N  &hmr RGUI E  &hmr LALT I  &hmr RCTRL O
                     &kp Z         &kp X        &kp C          &kp D               &kp V         &kp K         &kp H                &com_sem     &dot_col     &exc_qmk
                                                     &ltm 4 ESCAPE  &ltm 2 SPACE        &ltm 3 TAB    &ltm 3 ENTER  &ltm2 2 0
+                    /* Ergodox: Row0(14) Row1(14) Row2(12) Row3(14) Row4(10) Thumb(12) = 76 keys */
+                    &none &none &none &none &none &none &none  &none &none &none &none &none &none &none
+                    &none &kp Q &kp W &kp F &kp P &kp B &none  &none &kp J &kp L &kp U &kp Y &kp SQT &none
+                    &none &hml LCTRL A &hml LALT R &hml LGUI S &hmsl LEFT_SHIFT T &kp G  &kp M &hmsr RIGHT_SHIFT N &hmr RGUI E &hmr LALT I &hmr RCTRL O &none
+                    &none &kp Z &kp X &kp C &kp D &kp V &none  &none &kp K &kp H &com_sem &dot_col &exc_qmk &none
+                    &none &none &none &none &none              &none &none &none &none &none
+                    &none &none  &ltm 3 ENTER &none
+                    &ltm 4 ESCAPE &ltm 2 SPACE &ltm 3 TAB  &none &none &ltm2 2 0
+                    &none  &none
                 >;
             };
 
@@ -481,6 +504,15 @@
                     &hml LCTRL A  &hml LALT S  &hml LGUI D    &hml LEFT_SHIFT F  &kp G         &kp H         &hmr RIGHT_SHIFT J  &hmr RGUI K  &hmr LALT L  &hmr RCTRL SQT
                     &kp Z         &kp X        &kp C          &kp V              &kp B         &kp N         &kp M               &com_sem     &dot_col     &exc_qmk
                                                     &ltm 4 ESCAPE  &ltm 2 SPACE       &ltm 3 TAB    &ltm 3 ENTER  &ltm2 2 0
+                    /* Ergodox */
+                    &none &none &none &none &none &none &none  &none &none &none &none &none &none &none
+                    &none &kp Q &kp W &kp E &kp R &kp T &none  &none &kp Y &kp U &kp I &kp O &kp P &none
+                    &none &hml LCTRL A &hml LALT S &hml LGUI D &hml LEFT_SHIFT F &kp G  &kp H &hmr RIGHT_SHIFT J &hmr RGUI K &hmr LALT L &hmr RCTRL SQT &none
+                    &none &kp Z &kp X &kp C &kp V &kp B &none  &none &kp N &kp M &com_sem &dot_col &exc_qmk &none
+                    &none &none &none &none &none              &none &none &none &none &none
+                    &none &none  &ltm 3 ENTER &none
+                    &ltm 4 ESCAPE &ltm 2 SPACE &ltm 3 TAB  &none &none &ltm2 2 0
+                    &none  &none
                 >;
             };
 
@@ -492,6 +524,15 @@
                     &trans  &hml LALT NUMBER_4  &hml LGUI N5  &hml LSHFT N6  &kp N0      &trans  &trans  &trans  &trans  &trans
                     &trans  &kp N1              &kp N2        &kp N3         &kp PERIOD  &trans  &trans  &trans  &trans  &trans 
                                                 &trans        &trans        &trans         &trans      &trans
+                    /* Ergodox */
+                    &none &none &none &none &none &none &none  &none &none &none &none &none &none &none
+                    &none &trans &kp N7 &kp N8 &kp N9 &trans &none  &none &trans &trans &trans &trans &trans &none
+                    &none &trans &hml LALT NUMBER_4 &hml LGUI N5 &hml LSHFT N6 &kp N0  &trans &trans &trans &trans &trans &none
+                    &none &trans &kp N1 &kp N2 &kp N3 &kp PERIOD &none  &none &trans &trans &trans &trans &trans &none
+                    &none &none &none &none &none              &none &none &none &none &none
+                    &none &none  &trans &none
+                    &trans &trans &trans  &none &none &trans
+                    &none  &none
                 >;
             };
 
@@ -503,6 +544,15 @@
                     &trans  &hml LALT LEFT  &hml LCMD DOWN  &hml LSHFT RIGHT  &kp PG_DN  &kp END   &hmr RSHFT LEFT   &hmr RCMD DOWN_ARROW  &hmr RALT RIGHT    &trans
                     &trans  &trans          &trans          &trans            &trans     &trans    &kp LA(LG(LEFT))  &trans                &kp LG(LA(RIGHT))  &trans
                                             &trans          &trans            &trans     &trans    &trans
+                    /* Ergodox */
+                    &none &none &none &none &none &none &none  &none &none &none &none &none &none &none
+                    &none &trans &trans &kp UP_ARROW &trans &kp PG_UP &none  &none &kp HOME &trans &kp UP_ARROW &trans &trans &none
+                    &none &trans &hml LALT LEFT &hml LCMD DOWN &hml LSHFT RIGHT &kp PG_DN  &kp END &hmr RSHFT LEFT &hmr RCMD DOWN_ARROW &hmr RALT RIGHT &trans &none
+                    &none &trans &trans &trans &trans &trans &none  &none &trans &kp LA(LG(LEFT)) &trans &kp LG(LA(RIGHT)) &trans &none
+                    &none &none &none &none &none              &none &none &none &none &none
+                    &none &none  &trans &none
+                    &trans &trans &trans  &none &none &trans
+                    &none  &none
                 >;
             };
 
@@ -514,6 +564,15 @@
                     &hml LEFT_CONTROL F11  &hml LALT F4  &hml LCMD F5  &hml LSHFT F6  &none  &kp LA(LG(F))  &hmr RSHFT LG(LEFT)     &hmr RCMD C_VOL_DN  &hmr RALT LG(RIGHT)  &kp RCTRL
                     &kp F10                &kp F1        &kp F2        &kp F3         &none  &kp LA(LG(G))  &kp LA(LG(LEFT_ARROW))  &kp C_MUTE          &kp LA(LG(RIGHT))    &none
                                                                &trans    &trans         &trans  &trans         &trans
+                    /* Ergodox */
+                    &none &none &none &none &none &none &none  &none &none &none &none &none &none &none
+                    &none &kp F12 &kp F7 &kp F8 &kp F9 &none &none  &none &kp LA(LG(D)) &none &kp C_VOLUME_UP &none &none &none
+                    &none &hml LEFT_CONTROL F11 &hml LALT F4 &hml LCMD F5 &hml LSHFT F6 &none  &kp LA(LG(F)) &hmr RSHFT LG(LEFT) &hmr RCMD C_VOL_DN &hmr RALT LG(RIGHT) &kp RCTRL &none
+                    &none &kp F10 &kp F1 &kp F2 &kp F3 &none &none  &none &kp LA(LG(G)) &kp LA(LG(LEFT_ARROW)) &kp C_MUTE &kp LA(LG(RIGHT)) &none &none
+                    &none &none &none &none &none              &none &none &none &none &none
+                    &none &none  &trans &none
+                    &trans &trans &trans  &none &none &trans
+                    &none  &none
                 >;
             };
 
@@ -525,6 +584,15 @@
                     &trans        &trans        &trans        &trans        &bootloader  &trans  &trans  &trans  &trans  &trans
                     &trans        &trans        &trans        &trans        &trans       &trans  &trans  &trans  &trans  &trans
                                         &trans  &trans        &trans        &trans       &trans
+                    /* Ergodox */
+                    &none &none &none &none &none &none &none  &none &none &none &none &none &none &none
+                    &none &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_CLR &none  &none &trans &trans &trans &trans &trans &none
+                    &none &trans &trans &trans &trans &bootloader  &trans &trans &trans &trans &trans &none
+                    &none &trans &trans &trans &trans &trans &none  &none &trans &trans &trans &trans &trans &none
+                    &none &none &none &none &none              &none &none &none &none &none
+                    &none &none  &trans &none
+                    &trans &trans &trans  &none &none &trans
+                    &none  &none
                 >;
             };
 
@@ -536,6 +604,15 @@
                     &trans  &trans  &trans  &mkp LCLK  &mkp RCLK  &trans  &trans  &trans  &trans  &trans
                     &trans  &trans  &trans  &trans     &trans    &trans  &trans  &trans  &trans  &trans
                             &trans  &trans  &mo 3      &trans    &trans
+                    /* Ergodox */
+                    &none &none &none &none &none &none &none  &none &none &none &none &none &none &none
+                    &none &trans &trans &trans &trans &trans &none  &none &trans &trans &trans &trans &trans &none
+                    &none &trans &trans &trans &mkp LCLK &mkp RCLK  &trans &trans &trans &trans &trans &none
+                    &none &trans &trans &trans &trans &trans &none  &none &trans &trans &trans &trans &trans &none
+                    &none &none &none &none &none              &none &none &none &none &none
+                    &none &none  &trans &none
+                    &trans &trans &mo 3  &none &none &trans
+                    &none  &none
                 >;
             };
             

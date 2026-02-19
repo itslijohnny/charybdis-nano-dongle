@@ -1,0 +1,41 @@
+#include "charybdis.dtsi"
+
+&default_transform {
+	col-offset = <10>;
+};
+
+&kscan0 {
+	compatible = "zmk,kscan-gpio-matrix";
+	wakeup-source;
+
+	/*
+	 * Ergodox LEFT hand GPIO pin mapping.
+	 * Based on the Ergodox matrix -> pro_micro header wiring
+	 * (ref: tahnok/zmk-config ergodox shield).
+	 *
+	 * Cols (7): pro_micro 1,0,4,5,7,8,9
+	 * Rows (6): pro_micro 14,15,18,19,20,21
+	 */
+	col-gpios
+		= <&gpio0 8  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+		, <&gpio0 6  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+		, <&gpio0 22 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+		, <&gpio0 24 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+		, <&gpio0 11 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+		, <&gpio1 4  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+		, <&gpio1 6  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+		;
+
+	row-gpios
+		= <&gpio1 11 GPIO_ACTIVE_HIGH>
+		, <&gpio1 13 GPIO_ACTIVE_HIGH>
+		, <&gpio1 15 GPIO_ACTIVE_HIGH>
+		, <&gpio0 2  GPIO_ACTIVE_HIGH>
+		, <&gpio0 29 GPIO_ACTIVE_HIGH>
+		, <&gpio0 31 GPIO_ACTIVE_HIGH>
+		;
+};
+
+&trackball_split {
+	status = "disabled";
+};
